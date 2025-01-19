@@ -4,9 +4,9 @@ import Navbar from "../components/Navbar";
 
 const MainLayout = () => {
     return (
-        <div className="font-nunito">
+        <div className="font-roboto">
             <Navbar></Navbar>
-            <div>
+            <div className="min-h-[calc(100vh-685.9px)]">
                 <Outlet></Outlet>
             </div>
             <Footer></Footer>
