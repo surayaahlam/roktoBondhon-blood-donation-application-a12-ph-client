@@ -7,6 +7,7 @@ import useAuth from "../hooks/useAuth";
 const Navbar = () => {
     const navigate = useNavigate();
     const { user, logOut } = useAuth();
+
     const links = <>
         <NavLink
             to="/"
@@ -18,15 +19,15 @@ const Navbar = () => {
                 className={({ isActive }) => `text-lg ${isActive ? `font-extrabold text-primary` : 'hover:scale-110 hover:font-semibold'} md:hidden`}>Dashboard</NavLink>
         }
         <NavLink
-            to="/marathons"
+            to="/donation-requests"
             className={({ isActive }) => `text-lg md:text-base ${isActive ? `font-extrabold text-primary` : 'hover:scale-110 hover:font-semibold'}`}>Donation Requests</NavLink>
         <NavLink
-            to="/marathons"
+            to="/blog"
             className={({ isActive }) => `text-lg md:text-base ${isActive ? `font-extrabold text-primary` : 'hover:scale-110 hover:font-semibold'}`}>Blog</NavLink>
         {
             user?.email &&
             <NavLink
-                to="/dashboard"
+                to="/funding"
                 className={({ isActive }) => `text-lg md:text-base ${isActive ? `font-extrabold text-primary` : 'hover:scale110 hover:font-semibold'}`}>Funding</NavLink>
         }
         {
@@ -51,7 +52,7 @@ const Navbar = () => {
                         <div className="drawer-content">
                             <div className="navbar bg-base-100">
                                 <div className="mx-2 flex-1 px-2">
-                                    <div onClick={() => navigate("/")} className="btn btn-ghost flex items-center hover:bg-transparent px-0">
+                                    <div onClick={() => navigate("/")} className="btn btn-ghost flex itemsg -center hover:bg-transparent px-0">
                                         <img className="w-12 h-12" src={logoImg} alt="logo" />
                                         <h2 className={`text-[22px] md:text-[28px] leading-none font-nunito font-extrabold text-left uppercase`}><span className="text-primary">Rokto</span><br />Bondhon</h2>
                                     </div>

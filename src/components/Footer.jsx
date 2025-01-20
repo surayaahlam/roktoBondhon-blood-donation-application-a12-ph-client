@@ -6,7 +6,7 @@ import { BiSolidRightArrow } from "react-icons/bi";
 const Footer = () => {
     return (
 
-        <footer className="bg-footer pt-16 pb-8">
+        <footer className="bg-footer pt-16 pb-6 md:pb-8">
             <div className="container mx-auto">
                 <div className="w-11/12 lg:w-10/12 mx-auto">
 
@@ -19,7 +19,7 @@ const Footer = () => {
                         <p className="text-base font-normal text-font_tertiary font-nunito">Rokto Bondhon is dedicated to saving lives by bridging the gap between blood donors and those in need. Join us in creating a community of compassion, where every drop of blood makes a difference. Together, we can ensure that no life is lost due to the lack of blood.</p>
                     </div>
 
-                    <div className="w-full h-[0.2px] bg-gray-500 my-12"></div>
+                    <div className="w-full h-[0.2px] bg-gray-500 my-9 md:my-12"></div>
 
                     <div className="md:grid md:grid-cols-2 lg:flex justify-between items-start">
                         <nav className="flex flex-col text-font_quaternary font-nunito mb-6 md:mb-0">
@@ -86,12 +86,12 @@ const Footer = () => {
             </div>
 
             {/* Contact Info and Copyright */}
-            <div className="w-full h-[0.2px] bg-gray-500 mt-16"></div>
+            <div className="w-full h-[0.2px] bg-gray-500 mt-10 md:mt-16"></div>
 
-            <div className="container mx-auto mt-8">
-                <div className="w-11/12 lg:w-10/12 mx-auto text-font_tertiary md:flex justify-between">
+            <div className="container mx-auto mt-6 md:mt-8">
+                <div className="w-11/12 lg:w-10/12 mx-auto text-center md:text-left text-font_tertiary md:flex justify-between">
                     <p className="text-base font-normal">Copyright &copy; {new Date().getFullYear()} Rokto Bondhon. All right reserved</p>
-                    <p className="text-base font-normal">Designed with ❤️ by Rokto Bondhon Team</p>
+                    <p className="text-sm font-normal">Designed with ❤️ by Rokto Bondhon Team</p>
                 </div>
             </div>
         </footer >
