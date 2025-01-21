@@ -3,25 +3,137 @@ import registerLottie from "../assets/lottie/register.json";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useAxios from "../hooks/useAxios"
+import useAuth from "../hooks/useAuth";
+import { imageUpload } from "../api/utils";
 
 const Register = () => {
+    const axiosPublic = useAxios();
+    const { createNewUser, setUser, updateUserProfile } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
     const [showConPassword, setShowConPassword] = useState(false);
+    const [error, setError] = useState({});
+    const [districts, setDistricts] = useState([]);
+    const [upazilas, setUpazilas] = useState([]);
+
+    useEffect(() => {
+        const fetchDistricts = async () => {
+            try {
+                const { data } = await axiosPublic.get(`/districts`);
+                setDistricts(data);
+            } catch (error) {
+                console.error("Error fetching districts:", error);
+            }
+        };
+        fetchDistricts();
+    }, []);
+
+    // Fetch upazilas when a district is selected
+    const handleDistrictChange = (event) => {
+        const districtName = event.target.value;
+
+        if (districtName) {
+            const fetchUpazilas = async () => {
+                try {
+                    const { data } = await axiosPublic.get(`/upazilas/${districtName}`);
+                    setUpazilas(data[0].upazilas);
+                } catch (error) {
+                    console.error("Error fetching upazilas:", error);
+                }
+            };
+            fetchUpazilas();
+        } else {
+            setUpazilas([]); // Reset upazilas if no district is selected
+        }
+    };
+
+    const validatePassword = (password) => {
+        const errors = [];
+        if (!/[A-Z]/.test(password)) errors.push("Must include at least one uppercase letter. ");
+        if (!/[a-z]/.test(password)) errors.push("Must include at least one lowercase letter. ");
+        if (password.length < 6) errors.push("Must be at least 6 characters long. ");
+        return errors;
+    };
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const image = form.image.files[0];
+        const bloodGroup = form.blood.value;
+        const district = form.district.value;
+        const upazila = form.upazila.value;
+        const password = form.password.value;
+        const conPassword = form.conPassword.value;
+        const terms = form.terms.checked;
+
+        const imageURL = await imageUpload(image);
+
+        // Validate the password
+        const passwordErrors = validatePassword(password);
+        if (passwordErrors.length > 0) {
+            setError({ ...error, password: passwordErrors });
+            return;
+        };
+
+        if (password !== conPassword) {
+            setError({ ...error, password: "Passwords didn't match." });
+            return;
+        };
+
+        if (!terms) {
+            setError({ ...error, terms: "Please accept our terms & conditions." });
+            return;
+        };
+
+        // createNewUser(email, password)
+        //     .then((result) => {
+        //         const user = result.user;
+        //         setUser(user);
+        //         updateUserProfile({ displayName: name, photoURL: imageURL })
+        //             .then(() => {
+        //                 Swal.fire({
+        //                     title: "Register Successful!",
+        //                     text: `Welcome, ${user.displayName}!`,
+        //                     icon: "success",
+        //                     timer: 3000,
+        //                     willClose: () => {
+        //                         navigate("/");
+        //                     }
+        //                 });
+        //             });
+        //     })
+        //     .catch((err) => {
+        //         setError({ ...error, errorMsg: err.message });
+        //     });
+
+        // Post user data to the backend
+        await axiosPublic.post(`/users`, {
+            name,
+            email,
+            avatar: imageURL,
+            bloodGroup,
+            district,
+            upazila,
+        });
+    };
+
 
     return (
         <div className="container mx-auto mt-5 mb-16">
             <Helmet>
                 <title>Rokto Bondhon | Register</title>
             </Helmet>
-            <div className="w-11/12 mx-auto flex flex-row-reverse justify-center">
-                <Lottie className="w-[450px] hidden lg:block" animationData={registerLottie}></Lottie>
-                <div className={`w-full max-w-xl p-6 md:p-9 flex flex-col items-center`}>
+            <div className="w-11/12 mx-auto flex flex-row-reverse justify-center items-start lg:gap-10">
+                <Lottie className="w-[500px] hidden lg:block mt-28" animationData={registerLottie}></Lottie>
+                <div className={`w-full max-w-xl p-6 md:p-9 lg:px-4 flex flex-col items-center`}>
                     <h2 className={`text-4xl font-lato font-bold mb-1`}>Registration</h2>
                     <p className="text-sm font-medium text-font_secondary md:mb-2 lg:mb-0">Create your account</p>
                     <Lottie className="w-64 md:w-72 lg:hidden" animationData={registerLottie}></Lottie>
                     <div className={`card w-full shrink-0`}>
-                        <form onSubmit="" className="card-body p-0 md:p-4 lg:px-8">
+                        <form onSubmit={handleRegister} className="card-body p-0 md:p-4 lg:px-8">
 
                             {/* Name */}
                             <div className="form-control">
@@ -45,7 +157,7 @@ const Register = () => {
                                     <span className="label-text font-lato font-medium">Profile Avatar</span>
                                 </label>
                                 <input
-                                    name="photo"
+                                    name="image"
                                     type="file"
                                     className="file-input file-input-bordered border-primary file:bg-primary file:border-primary file:text-white"
                                     required
@@ -76,6 +188,7 @@ const Register = () => {
 
                             {/* District and Upazila */}
                             <div className="w-full md:flex gap-4">
+                                {/* District */}
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text font-lato font-medium">District</span>
@@ -83,13 +196,19 @@ const Register = () => {
                                     <select
                                         name="district"
                                         className="select border-primary"
+                                        onChange={handleDistrictChange}
                                         required
                                         defaultValue="">
                                         <option value="" disabled>Select your district</option>
-                                        <option value="A+">A+</option>
+                                        {
+                                            districts.map((district) => (
+                                                <option key={district._id} value={district.name}>{district.name}</option>
+                                            ))
+                                        }
                                     </select>
                                 </div>
 
+                                {/* Upazila */}
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text font-lato font-medium">Upazila</span>
@@ -100,11 +219,15 @@ const Register = () => {
                                         required
                                         defaultValue="">
                                         <option value="" disabled>Select your upazila</option>
-                                        <option value="A+">A+</option>
+                                        {
+                                            upazilas.map((upazila) => (
+                                                <option key={upazila._id} value={upazila.name}>
+                                                    {upazila.name}
+                                                </option>
+                                            ))
+                                        }
                                     </select>
                                 </div>
-
-
                             </div>
 
                             {/* Password */}
@@ -146,13 +269,13 @@ const Register = () => {
                                     }
                                 </button>
                             </div>
-                            {/* {error.password && (
+                            {error.password && (
                                 <label className="label">
                                     <p className="text-sm font-normal text-red-700">
                                         {error.password}
                                     </p>
                                 </label>
-                            )} */}
+                            )}
 
                             {/* Terms & Conditions */}
                             <div className="form-control">
@@ -164,9 +287,9 @@ const Register = () => {
 
                             {/* Register Button */}
                             <div className="form-control mt-4">
-                                <button type="submit" className="btn bg-primary border-none text-white hover:bg-font_secondary text-base font-lato">Register</button>
+                                <button type="submit" className="btn bg-primary border-none text-white hover:bg-secondary text-base font-lato">Register</button>
                             </div>
-                            {/* {error.terms && (
+                            {error.terms && (
                                 <label className="label">
                                     <p className="text-sm font-normal text-red-700">
                                         {error.terms}
@@ -179,7 +302,7 @@ const Register = () => {
                                         {error.errorMsg}
                                     </p>
                                 </label>
-                            )} */}
+                            )}
 
 
                             <div className="form-control items-center">
