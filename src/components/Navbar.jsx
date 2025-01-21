@@ -64,26 +64,27 @@ const Navbar = () => {
                                     </ul>
                                     {
                                         user?.email &&
-                                        <div className="dropdown dropdown-end">
+                                        <div className="dropdown dropdown-end lg:ml-2">
                                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                                <div className="ml-4">
-                                                    {
-                                                        user?.photoURL ?
-                                                            <div>
-                                                                <img className={`w-12 h-12 md:w-[52px] md:h-[52px] rounded-full`} src={user?.photoURL} alt="" />
-                                                            </div>
-                                                            :
-                                                            <div className="text-black">
-                                                                <FaUserCircle size={45} />
-                                                            </div>
-                                                    }
-                                                </div>
+                                                {
+                                                    user?.photoURL ?
+                                                        <div>
+                                                            <img className={`rounded-full`} src={user?.photoURL} alt="" />
+                                                        </div>
+                                                        :
+                                                        <div className="text-black">
+                                                            <FaUserCircle size={45} />
+                                                        </div>
+                                                }
                                             </div>
                                             <ul
                                                 tabIndex={0}
-                                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow hidden md:block">
-                                                <Link to="/dashboard" className={`text-base`}>Dashboard</Link>
-                                                <Link onClick={logOut} className={`text-base`}>Logout</Link>
+                                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 py-3 px-0 shadow hidden md:flex">
+                                                    <p className="text-sm ml-4">{user?.displayName}</p>
+                                                    <p className="text-xs ml-4">{user?.email}</p>
+                                                    <div className="divider my-[2px]"></div>
+                                                <Link to="/dashboard" className={`text-lg md:text-base hover:scale-100 hover:font-semibold hover:text-primary uppercase hover:bg-[#ffe8e8] mx-2 p-2 rounded-xl`}>Dashboard</Link>
+                                                <Link onClick={logOut} className={`text-lg md:text-base hover:scale-100 hover:font-semibold hover:text-primary uppercase hover:bg-[#ffe8e8] mx-2 p-2 rounded-xl`}>Logout</Link>
                                             </ul>
                                         </div>
                                     }

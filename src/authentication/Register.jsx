@@ -2,15 +2,17 @@ import Lottie from "lottie-react";
 import registerLottie from "../assets/lottie/register.json";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useAxios from "../hooks/useAxios"
 import useAuth from "../hooks/useAuth";
 import { imageUpload } from "../api/utils";
+import Swal from "sweetalert2";
 
 const Register = () => {
     const axiosPublic = useAxios();
-    const { createNewUser, setUser, updateUserProfile } = useAuth();
+    const navigate = useNavigate();
+    const { createNewUser, setUser, updateUserProfile, loading } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
     const [showConPassword, setShowConPassword] = useState(false);
     const [error, setError] = useState({});
@@ -88,36 +90,39 @@ const Register = () => {
             return;
         };
 
-        // createNewUser(email, password)
-        //     .then((result) => {
-        //         const user = result.user;
-        //         setUser(user);
-        //         updateUserProfile({ displayName: name, photoURL: imageURL })
-        //             .then(() => {
-        //                 Swal.fire({
-        //                     title: "Register Successful!",
-        //                     text: `Welcome, ${user.displayName}!`,
-        //                     icon: "success",
-        //                     timer: 3000,
-        //                     willClose: () => {
-        //                         navigate("/");
-        //                     }
-        //                 });
-        //             });
-        //     })
-        //     .catch((err) => {
-        //         setError({ ...error, errorMsg: err.message });
-        //     });
+        try {
+            // Create user in Firebase Authentication
+            const result = await createNewUser(email, password);
+            const user = result.user;
+            setUser(user);
 
-        // Post user data to the backend
-        await axiosPublic.post(`/users`, {
-            name,
-            email,
-            avatar: imageURL,
-            bloodGroup,
-            district,
-            upazila,
-        });
+            // Update user profile in Firebase
+            await updateUserProfile({ displayName: name, photoURL: imageURL });
+
+            // Show success message
+            Swal.fire({
+                title: "Register Successful!",
+                text: `Welcome, ${user.displayName}!`,
+                icon: "success",
+                timer: 3000,
+                willClose: () => {
+                    navigate("/");
+                }
+            });
+
+            // Post user data to the backend
+            await axiosPublic.post(`/users/${user?.email}`, {
+                name: user?.displayName,
+                email: user?.email,
+                avatar: user?.photoURL,
+                bloodGroup,
+                district,
+                upazila,
+            });
+        }
+        catch (err) {
+            setError({ ...error, errorMsg: err.message });
+        }
     };
 
 
@@ -285,10 +290,20 @@ const Register = () => {
                                 </label>
                             </div>
 
-                            {/* Register Button */}
+                            {/* Register Submit Button */}
                             <div className="form-control mt-4">
-                                <button type="submit" className="btn bg-primary border-none text-white hover:bg-secondary text-base font-lato">Register</button>
+                                <button 
+                                    type="submit" 
+                                    className="btn bg-primary border-none text-white hover:bg-secondary text-base font-lato"
+                                >
+                                    {
+                                        loading
+                                            ? <span className="loading loading-spinner loading-xs text-white"></span>
+                                            : "Register"
+                                    }
+                                </button>
                             </div>
+
                             {error.terms && (
                                 <label className="label">
                                     <p className="text-sm font-normal text-red-700">
