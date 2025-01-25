@@ -1,12 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import useAuth from "../hooks/useAuth";
 
 const MainLayout = () => {
+    const { user } = useAuth();
     return (
         <div className="font-roboto">
             <Navbar></Navbar>
-            <div className="min-h-[calc(100vh-685.9px)]">
+            <div className={`${user?.email ? "min-h-[calc(100vh-691.5px)]" : "min-h-[calc(100vh-685.9px)]"}`}>
                 <Outlet></Outlet>
             </div>
             <Footer></Footer>

@@ -28,7 +28,7 @@ const Navbar = () => {
             user?.email &&
             <NavLink
                 to="/funding"
-                className={({ isActive }) => `text-lg md:text-base ${isActive ? `font-extrabold text-primary` : 'hover:scale110 hover:font-semibold'}`}>Funding</NavLink>
+                className={({ isActive }) => `text-lg md:text-base ${isActive ? `font-extrabold text-primary` : 'hover:scale-110 hover:font-semibold'}`}>Funding</NavLink>
         }
         {
             user?.email ?
@@ -52,7 +52,7 @@ const Navbar = () => {
                         <div className="drawer-content">
                             <div className="navbar bg-base-100">
                                 <div className="mx-2 flex-1 px-2">
-                                    <div onClick={() => navigate("/")} className="btn btn-ghost flex itemsg -center hover:bg-transparent px-0">
+                                    <div onClick={() => navigate("/")} className="btn btn-ghost flex items-center hover:bg-transparent px-0">
                                         <img className="w-12 h-12" src={logoImg} alt="logo" />
                                         <h2 className={`text-[22px] md:text-[28px] leading-none font-nunito font-extrabold text-left uppercase`}><span className="text-primary">Rokto</span><br />Bondhon</h2>
                                     </div>
@@ -80,11 +80,11 @@ const Navbar = () => {
                                             <ul
                                                 tabIndex={0}
                                                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 py-3 px-0 shadow hidden md:flex">
-                                                    <p className="text-sm ml-4">{user?.displayName}</p>
-                                                    <p className="text-xs ml-4">{user?.email}</p>
+                                                    <p className="text-sm ml-5">{user?.displayName}</p>
+                                                    <p className="text-xs ml-5">{user?.email}</p>
                                                     <div className="divider my-[2px]"></div>
-                                                <Link to="/dashboard" className={`text-lg md:text-base hover:scale-100 hover:font-semibold hover:text-primary uppercase hover:bg-[#ffe8e8] mx-2 p-2 rounded-xl`}>Dashboard</Link>
-                                                <Link onClick={logOut} className={`text-lg md:text-base hover:scale-100 hover:font-semibold hover:text-primary uppercase hover:bg-[#ffe8e8] mx-2 p-2 rounded-xl`}>Logout</Link>
+                                                <Link to="/dashboard" className={`text-lg md:text-base hover:scale-100 hover:font-semibold hover:text-primary uppercase hover:bg-[#ffe8e8] mx-2 px-3 py-2 rounded-xl`}>Dashboard</Link>
+                                                <Link onClick={logOut} className={`text-lg md:text-base hover:scale-100 hover:font-semibold hover:text-primary uppercase hover:bg-[#ffe8e8] mx-2 px-3 py-2 rounded-xl`}>Logout</Link>
                                             </ul>
                                         </div>
                                     }
