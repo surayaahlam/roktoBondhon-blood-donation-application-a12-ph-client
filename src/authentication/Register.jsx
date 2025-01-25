@@ -134,7 +134,7 @@ const Register = () => {
             <div className="w-11/12 mx-auto flex flex-row-reverse justify-center items-start lg:gap-10">
                 <Lottie className="w-[500px] hidden lg:block mt-28" animationData={registerLottie}></Lottie>
                 <div className={`w-full max-w-xl p-6 md:p-9 lg:px-4 flex flex-col items-center`}>
-                    <h2 className={`text-4xl font-lato font-bold mb-1`}>Registration</h2>
+                    <h2 className={`text-4xl  font-bold mb-1`}>Registration</h2>
                     <p className="text-sm font-medium text-font_secondary md:mb-2 lg:mb-0">Create your account</p>
                     <Lottie className="w-64 md:w-72 lg:hidden" animationData={registerLottie}></Lottie>
                     <div className={`card w-full shrink-0`}>
@@ -143,7 +143,7 @@ const Register = () => {
                             {/* Name */}
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text font-lato font-medium">Name</span>
+                                    <span className="label-text  font-medium">Name</span>
                                 </label>
                                 <input name="name" type="text" placeholder="Enter your name" className={`input input-bordered border-primary`} required />
                             </div>
@@ -151,7 +151,7 @@ const Register = () => {
                             {/* Email */}
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text font-lato font-medium">Email Address</span>
+                                    <span className="label-text  font-medium">Email Address</span>
                                 </label>
                                 <input name="email" type="email" placeholder="Enter your email address" className={`input input-bordered border-primary`} required />
                             </div>
@@ -159,7 +159,7 @@ const Register = () => {
                             {/* Image */}
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text font-lato font-medium">Profile Avatar</span>
+                                    <span className="label-text  font-medium">Profile Avatar</span>
                                 </label>
                                 <input
                                     name="image"
@@ -172,7 +172,7 @@ const Register = () => {
                             {/* Blood Group */}
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text font-lato font-medium">Blood Group</span>
+                                    <span className="label-text  font-medium">Blood Group</span>
                                 </label>
                                 <select
                                     name="blood"
@@ -196,7 +196,7 @@ const Register = () => {
                                 {/* District */}
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text font-lato font-medium">District</span>
+                                        <span className="label-text  font-medium">District</span>
                                     </label>
                                     <select
                                         name="district"
@@ -216,7 +216,7 @@ const Register = () => {
                                 {/* Upazila */}
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text font-lato font-medium">Upazila</span>
+                                        <span className="label-text  font-medium">Upazila</span>
                                     </label>
                                     <select
                                         name="upazila"
@@ -238,7 +238,7 @@ const Register = () => {
                             {/* Password */}
                             <div className="form-control relative">
                                 <label className="label">
-                                    <span className="label-text font-lato font-medium">Password</span>
+                                    <span className="label-text  font-medium">Password</span>
                                 </label>
                                 <input
                                     name="password"
@@ -258,7 +258,7 @@ const Register = () => {
                             {/* Confirm Password */}
                             <div className="form-control relative">
                                 <label className="label">
-                                    <span className="label-text font-lato font-medium">Confirm Password</span>
+                                    <span className="label-text  font-medium">Confirm Password</span>
                                 </label>
                                 <input
                                     name="conPassword"
@@ -294,7 +294,7 @@ const Register = () => {
                             <div className="form-control mt-4">
                                 <button 
                                     type="submit" 
-                                    className="btn bg-primary border-none text-white hover:bg-secondary text-base font-lato"
+                                    className="btn bg-primary border-none text-white hover:bg-secondary text-base "
                                 >
                                     {
                                         loading

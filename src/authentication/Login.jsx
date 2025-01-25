@@ -46,7 +46,7 @@ const Login = () => {
             <div className="w-11/12 mx-auto flex flex-col-reverse md:flex-row items-center justify-center">
                 <Lottie className="w-[550px] hidden md:block" animationData={loginLottie}></Lottie>
                 <div className={`w-full max-w-xl p-6 md:p-9 flex flex-col items-center`}>
-                    <h2 className={`text-4xl font-lato font-bold`}>Welcome Back</h2>
+                    <h2 className={`text-4xl  font-bold`}>Welcome Back</h2>
                     <p className="text-sm font-medium text-font_secondary md:mb-2">Login your account</p>
                     <Lottie className="w-64 md:hidden" animationData={loginLottie}></Lottie>
                     <div className={`card bg-base-100 w-full shrink-0`}>
@@ -55,7 +55,7 @@ const Login = () => {
                             {/* Email */}
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text font-lato font-medium">Email Address</span>
+                                    <span className="label-text  font-medium">Email Address</span>
                                 </label>
                                 <input name="email" type="email" placeholder="Enter your email address" className={`input input-bordered border-primary`} required />
                             </div>
@@ -63,7 +63,7 @@ const Login = () => {
                             {/* Password */}
                             <div className="form-control relative">
                                 <label className="label">
-                                    <span className="label-text font-lato font-medium">Password</span>
+                                    <span className="label-text  font-medium">Password</span>
                                 </label>
                                 <input
                                     name="password"

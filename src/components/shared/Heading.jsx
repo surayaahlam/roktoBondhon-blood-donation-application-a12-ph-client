@@ -2,7 +2,7 @@ import dividerImg from "../../assets/divider.png";
 
 const Heading = ({ subtitle, title }) => {
     return (
-        <div className="flex flex-col items-center mb-10">
+        <div className="flex flex-col items-center mb-6 lg:mb-10">
             {
                 subtitle &&
                 <p className="mb-2 text-primary text-base md:text-lg font-semibold">{subtitle}</p>

@@ -3,12 +3,10 @@ import Heading from "../../../components/shared/Heading";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-
 AOS.init({
-    duration: 1000, // Animation duration in milliseconds
+    duration: 1750, // Animation duration in milliseconds
     once: true, // Whether animation should happen only once
 });
-
 
 const FeaturedSection = () => {
     return (
