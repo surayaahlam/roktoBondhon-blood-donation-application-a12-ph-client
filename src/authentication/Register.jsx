@@ -105,7 +105,7 @@ const Register = () => {
 
             // Show success message
             Swal.fire({
-                title: "Register Successful!",
+                title: "Registration Successful!",
                 text: `Welcome, ${user.displayName}!`,
                 icon: "success",
                 timer: 3000,
@@ -198,7 +198,7 @@ const Register = () => {
                             {/* District and Upazila */}
                             <div className="w-full md:flex gap-4">
                                 {/* District */}
-                                <div className="form-control">
+                                <div className="form-control md:flex-auto">
                                     <label className="label">
                                         <span className="label-text  font-medium">District</span>
                                     </label>
@@ -218,7 +218,7 @@ const Register = () => {
                                 </div>
 
                                 {/* Upazila */}
-                                <div className="form-control">
+                                <div className="form-control md:flex-auto">
                                     <label className="label">
                                         <span className="label-text  font-medium">Upazila</span>
                                     </label>
@@ -301,7 +301,7 @@ const Register = () => {
                             </div>
 
                             {/* Register Submit Button */}
-                            <div className="form-control mt-4">
+                            <div className="form-control mt-2">
                                 <button 
                                     type="submit" 
                                     className="btn bg-primary border-none text-white hover:bg-secondary text-base uppercase"

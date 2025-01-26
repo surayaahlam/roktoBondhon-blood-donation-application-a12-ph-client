@@ -20,9 +20,6 @@ export default {
       fontFamily: {
         roboto: 'Roboto',
         nunito: 'Nunito',
-      },
-      backgroundImage: {
-        'footer_img': "url('')"
       }
     },
   },

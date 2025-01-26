@@ -12,7 +12,7 @@ const Footer = () => {
 
                     {/* Logo Section */}
                     <div className="flex flex-col md:flex-row gap-6 md:gap-28 lg:gap-56">
-                        <div className="flex items-center hover:bg-transparent gap-3 md:gap-4">
+                        <div className="flex items-center bg-transparent gap-3 md:gap-4">
                             <img className="w-[50px] h-[50px] md:w-14 md:h-14" src={logoImg} alt="logo" />
                             <h2 className={`text-[24px] md:text-[30px] leading-none font-nunito font-extrabold text-left uppercase text-white`}><span className="text-primary">Rokto</span><br />Bondhon</h2>
                         </div>

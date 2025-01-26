@@ -44,13 +44,13 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="py-3 shadow-md">
+        <div className="py-3 shadow-md bg-base-100 sticky top-0 z-40">
             <div className="container mx-auto">
                 <div className="w-11/12 mx-auto">
                     <div className="drawer drawer-end">
                         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                         <div className="drawer-content">
-                            <div className="navbar bg-base-100">
+                            <div className="navbar">
                                 <div className="mx-2 flex-1 px-2">
                                     <div onClick={() => navigate("/")} className="btn btn-ghost flex items-center hover:bg-transparent px-0">
                                         <img className="w-12 h-12" src={logoImg} alt="logo" />
@@ -100,7 +100,7 @@ const Navbar = () => {
                         </div>
                         <div className="drawer-side z-50">
                             <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                            <ul className="menu bg-base-200 text-base-content min-h-full w-60 py-6 pl-10 gap-6">
+                            <ul className="menu bg-base-200 text-base-content min-h-full w-60 py-6 pl-7 gap-6">
                                 {/* Sidebar content here */}
                                 {links}
                             </ul>
