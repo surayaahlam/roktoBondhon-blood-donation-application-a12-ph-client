@@ -72,7 +72,10 @@ const Login = () => {
                                     className={`input input-bordered border-primary`}
                                     required />
                                 <button
-                                    onClick={() => setShowPassword(!showPassword)}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setShowPassword(!showPassword);
+                                    }}
                                     className="btn btn-xs btn-ghost hover:bg-transparent absolute right-2 top-12">
                                     {
                                         showPassword ? <FaEyeSlash size={15} /> : <FaEye size={15} />
@@ -91,7 +94,7 @@ const Login = () => {
                             <div className="form-control mt-4">
                                 <button
                                     type="submit"
-                                    className="btn bg-button border-none text-white hover:bg-secondary text-base font-bold"
+                                    className="btn bg-button border-none text-white hover:bg-secondary text-base font-bold uppercase"
                                 >
                                     {
                                         loading

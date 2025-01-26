@@ -12,7 +12,8 @@ import Swal from "sweetalert2";
 const Register = () => {
     const axiosPublic = useAxios();
     const navigate = useNavigate();
-    const { createNewUser, setUser, updateUserProfile, loading } = useAuth();
+    const { createNewUser, setUser, updateUserProfile } = useAuth();
+    const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showConPassword, setShowConPassword] = useState(false);
     const [error, setError] = useState({});
@@ -60,6 +61,7 @@ const Register = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        setLoading(true);
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
@@ -98,6 +100,8 @@ const Register = () => {
 
             // Update user profile in Firebase
             await updateUserProfile({ displayName: name, photoURL: imageURL });
+
+            setLoading(false);
 
             // Show success message
             Swal.fire({
@@ -164,7 +168,7 @@ const Register = () => {
                                 <input
                                     name="image"
                                     type="file"
-                                    className="file-input file-input-bordered border-primary file:bg-primary file:border-primary file:text-white"
+                                    className="file-input file-input-bordered border-primary file:bg-primary file:hover:bg-secondary file:border-none file:text-white"
                                     required
                                 />
                             </div>
@@ -247,7 +251,10 @@ const Register = () => {
                                     className={`input input-bordered border-primary`}
                                     required />
                                 <button
-                                    onClick={() => setShowPassword(!showPassword)}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setShowPassword(!showPassword);
+                                    }}
                                     className="btn btn-xs btn-ghost hover:bg-transparent absolute right-2 top-12">
                                     {
                                         showPassword ? <FaEyeSlash size={15} /> : <FaEye size={15} />
@@ -267,10 +274,13 @@ const Register = () => {
                                     className={`input input-bordered border-primary`}
                                     required />
                                 <button
-                                    onClick={() => setShowConPassword(!showConPassword)}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setShowConPassword(!showConPassword);
+                                    }}
                                     className="btn btn-xs btn-ghost hover:bg-transparent absolute right-2 top-12">
                                     {
-                                        showPassword ? <FaEyeSlash size={15} /> : <FaEye size={15} />
+                                        showConPassword ? <FaEyeSlash size={15} /> : <FaEye size={15} />
                                     }
                                 </button>
                             </div>
@@ -294,7 +304,7 @@ const Register = () => {
                             <div className="form-control mt-4">
                                 <button 
                                     type="submit" 
-                                    className="btn bg-primary border-none text-white hover:bg-secondary text-base "
+                                    className="btn bg-primary border-none text-white hover:bg-secondary text-base uppercase"
                                 >
                                     {
                                         loading

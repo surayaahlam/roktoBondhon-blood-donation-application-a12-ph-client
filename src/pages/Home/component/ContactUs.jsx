@@ -71,7 +71,7 @@ const ContactUs = () => {
                             {/* Submit Button */}
                             <button
                                 type="submit"
-                                className="w-full bg-primary text-white py-3 rounded-md font-bold hover:bg-secondary transition-all"
+                                className="w-full bg-primary text-white py-3 rounded-md font-bold hover:bg-secondary transition-all uppercase"
                             >
                                 Send Message
                             </button>

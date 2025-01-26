@@ -18,8 +18,8 @@ const Banner = () => {
                             Our platform is designed to make blood donation simple and efficient by connecting donors with those in need. It promotes a seamless process <br /> while building a supportive community dedicated to saving lives and making a meaningful impact.
                         </p>
                         <div className="flex justify-center gap-5">
-                            <button onClick={() => navigate("/register")} className={`btn bg-button text-white hover:bg-secondary font-roboto px-7 font-bold text-base border-none uppercase`}>Join as a donor</button>
-                            <button onClick={() => navigate("/search")} className={`btn bg-white text-button hover:bg-secondary hover:text-white font-roboto px-7 font-bold text-base border-none uppercase`}>Search Donors</button>
+                            <button onClick={() => navigate("/register")} className={`btn bg-button text-white hover:bg-secondary font-roboto px-7 lg:px-10 font-bold text-base border-none uppercase`}>Join as a donor</button>
+                            <button onClick={() => navigate("/search")} className={`btn bg-white text-button hover:bg-secondary hover:text-white font-roboto px-7 lg:px-10 font-bold text-base border-none uppercase`}>Search Donors</button>
                         </div>
                     </div>
                 </div>
