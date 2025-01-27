@@ -8,6 +8,7 @@ import useAxios from "../hooks/useAxios"
 import useAuth from "../hooks/useAuth";
 import { imageUpload } from "../api/utils";
 import Swal from "sweetalert2";
+import useAddressLocation from "../hooks/useAddressLocation";
 
 const Register = () => {
     const axiosPublic = useAxios();
@@ -17,38 +18,11 @@ const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConPassword, setShowConPassword] = useState(false);
     const [error, setError] = useState({});
-    const [districts, setDistricts] = useState([]);
-    const [upazilas, setUpazilas] = useState([]);
+    const { districts, upazilas, fetchUpazilas } = useAddressLocation();
 
-    useEffect(() => {
-        const fetchDistricts = async () => {
-            try {
-                const { data } = await axiosPublic.get(`/districts`);
-                setDistricts(data);
-            } catch (error) {
-                console.error("Error fetching districts:", error);
-            }
-        };
-        fetchDistricts();
-    }, []);
-
-    // Fetch upazilas when a district is selected
     const handleDistrictChange = (event) => {
         const districtName = event.target.value;
-
-        if (districtName) {
-            const fetchUpazilas = async () => {
-                try {
-                    const { data } = await axiosPublic.get(`/upazilas/${districtName}`);
-                    setUpazilas(data[0].upazilas);
-                } catch (error) {
-                    console.error("Error fetching upazilas:", error);
-                }
-            };
-            fetchUpazilas();
-        } else {
-            setUpazilas([]); // Reset upazilas if no district is selected
-        }
+        fetchUpazilas(districtName);
     };
 
     const validatePassword = (password) => {
@@ -295,7 +269,7 @@ const Register = () => {
                             {/* Terms & Conditions */}
                             <div className="form-control">
                                 <label className="label justify-start cursor-pointer">
-                                    <input type="checkbox" name="terms" className="checkbox w-5 h-5" />
+                                    <input type="checkbox" name="terms" className="checkbox checkbox-sm" />
                                     <span className="ml-3 label-text">Agree to Terms & Conditions</span>
                                 </label>
                             </div>

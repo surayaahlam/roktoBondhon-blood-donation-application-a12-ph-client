@@ -6,6 +6,7 @@ import Home from "../pages/Home/Home";
 import ErrorPage from "../pages/ErrorPage";
 import DashboardLayout from "../layouts/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
+import Profile from "../pages/Dashboard/Common/Profile";
 
 const router = createBrowserRouter([
     {
@@ -30,7 +31,15 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: <PrivateRoute>
             <DashboardLayout></DashboardLayout>
-        </PrivateRoute>
+        </PrivateRoute>,
+        children: [
+            {
+                path: "/dashboard/profile",
+                element: <PrivateRoute>
+                    <Profile></Profile>
+                </PrivateRoute>
+            },
+        ]
     },
     {
         path: "*",

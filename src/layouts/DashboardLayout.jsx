@@ -1,9 +1,11 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../pages/Dashboard/Sidebar";
 import logoImg from "../assets/logo1.png";
 import { FaBars } from "react-icons/fa";
 
 const DashboardLayout = () => {
+    const navigate = useNavigate();
+
     return (
         <div className="drawer drawer-end">
             <input id="my-dashboard-drawer" type="checkbox" className="drawer-toggle" />
@@ -12,12 +14,12 @@ const DashboardLayout = () => {
                 <div className='md:hidden'>
                     <div className="bg-base-100 shadow-md ">
                         <div className="w-11/12 mx-auto flex justify-between py-4">
-                            <div className="flex items-center gap-2">
+                            <div onClick={() => navigate("/")} className="btn btn-ghost flex items-center hover:bg-transparent px-0">
                                 <img className="w-12 h-12" src={logoImg} alt="logo" />
                                 <h2 className={`text-[22px] leading-none font-nunito font-extrabold text-left uppercase`}><span className="text-primary">Rokto</span><br />Bondhon</h2>
                             </div>
                             <label htmlFor="my-dashboard-drawer" aria-label="open sidebar" className="btn btn-square btn-ghost">
-                                <div className={`btn btn-ghost text-black`}>
+                                <div className={`text-primary`}>
                                     <FaBars size={25} />
                                 </div>
                             </label>
