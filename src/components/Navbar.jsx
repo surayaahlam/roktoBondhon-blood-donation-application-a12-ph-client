@@ -80,9 +80,9 @@ const Navbar = () => {
                                             <ul
                                                 tabIndex={0}
                                                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 py-3 px-0 shadow hidden md:flex">
-                                                    <p className="text-sm ml-5">{user?.displayName}</p>
-                                                    <p className="text-xs ml-5">{user?.email}</p>
-                                                    <div className="divider my-[2px]"></div>
+                                                <p className="text-sm ml-5">{user?.displayName}</p>
+                                                <p className="text-xs ml-5">{user?.email}</p>
+                                                <div className="divider my-[2px]"></div>
                                                 <Link to="/dashboard" className={`text-lg md:text-base hover:scale-100 hover:font-semibold hover:text-primary uppercase hover:bg-[#ffe8e8] mx-2 px-3 py-2 rounded-xl`}>Dashboard</Link>
                                                 <Link onClick={logOut} className={`text-lg md:text-base hover:scale-100 hover:font-semibold hover:text-primary uppercase hover:bg-[#ffe8e8] mx-2 px-3 py-2 rounded-xl`}>Logout</Link>
                                             </ul>

@@ -87,7 +87,7 @@ const Profile = () => {
             <div className={`card w-full shrink-0`}>
                 <form onSubmit={handleSave} className="card-body p-2 md:p-4 lg:px-8">
                     <div className="flex items-center justify-between">
-                        <h2 className="text-2xl md:text-[26px] lg:text-3xl font-bold">My Profile</h2>
+                        <h2 className="text-2xl md:text-[26px] lg:text-3xl font-bold text-primary">My Profile</h2>
                         {!isEditable &&
                             <div onClick={handleEdit} className="btn btn-ghost hover:bg-transparent text-primary">
                                 <TbEdit size={27}></TbEdit>

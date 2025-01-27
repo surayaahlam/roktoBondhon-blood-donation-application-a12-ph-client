@@ -25,7 +25,7 @@ const DashboardLayout = () => {
                             </label>
                         </div>
                     </div>
-                    <div className="w-11/12 mx-auto">
+                    <div className="w-11/12 mx-auto py-4">
                         <Outlet></Outlet>
                     </div>
                 </div>
@@ -35,7 +35,7 @@ const DashboardLayout = () => {
                     <Sidebar></Sidebar>
 
                     <div className='flex-1'>
-                        <div className='p-8'>
+                        <div className='p-4 lg:p-8 '>
                             <Outlet></Outlet>
                         </div>
                     </div>
