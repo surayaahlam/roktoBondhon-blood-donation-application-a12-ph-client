@@ -5,11 +5,11 @@ import useAuth from '../hooks/useAuth';
 
 const AdminRoute = ({ children }) => {
     const { loading } = useAuth();
-    const [role, isLoading] = useRole();
+    const [role, , isLoading] = useRole();
 
     if (isLoading) return <Loading />;
     if (role === 'Admin') return children;
-    return <Navigate to="/" state={{ from: location }} replace='true' />;
+    return <Navigate to="/" state={{ from: location.pathname }} replace='true' />;
 }
 
 export default AdminRoute;

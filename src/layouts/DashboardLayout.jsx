@@ -7,7 +7,7 @@ const DashboardLayout = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="drawer drawer-end">
+        <div className="drawer drawer-end font-roboto">
             <input id="my-dashboard-drawer" type="checkbox" className="drawer-toggle" />
             <div>
                 {/* Mobile content*/}

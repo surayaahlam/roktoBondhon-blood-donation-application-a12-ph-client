@@ -15,6 +15,11 @@ import AllUsers from "../pages/Dashboard/AdminPanel/AllUsers";
 import RoleBasedRoute from "./RoleBasedRoute";
 import AllBloodDonationRequest from "../pages/Dashboard/AdminPanel/AllBloodDonationRequest";
 import ContentManagement from "../pages/Dashboard/AdminPanel/ContentManagement";
+import BloodDonationRequests from "../pages/BloodDonationRequests";
+import BlogPage from "../pages/BlogPage";
+import SearchPage from "../pages/SearchPage";
+import Funding from "../pages/Funding";
+import DonationRequestDetails from "../pages/DonationRequestDetails";
 
 const router = createBrowserRouter([
     {
@@ -23,15 +28,39 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Home></Home>,
+                element: <Home></Home>
+            },
+            {
+                path: "search",
+                element: <SearchPage></SearchPage>
+            },
+            {
+                path: "donation-requests",
+                element: <BloodDonationRequests></BloodDonationRequests>
+            },
+            {
+                path: "blog",
+                element: <BlogPage></BlogPage>
+            },
+            {
+                path: "funding",
+                element: <PrivateRoute>
+                    <Funding></Funding>
+                </PrivateRoute>
+            },
+            {
+                path: "donation-request-details",
+                element: <PrivateRoute>
+                    <DonationRequestDetails></DonationRequestDetails>
+                </PrivateRoute>
             },
             {
                 path: "login",
-                element: <Login></Login>,
+                element: <Login></Login>
             },
             {
                 path: "register",
-                element: <Register></Register>,
+                element: <Register></Register>
             },
         ]
     },

@@ -5,12 +5,12 @@ import useAuth from "../hooks/useAuth";
 
 const RoleBasedRoute = ({ children }) => {
     const { loading } = useAuth();
-    const [role, isLoading] = useRole();
+    const [role, , isLoading] = useRole();
 
     if (loading || isLoading) return <Loading />;
     if (role === "Admin" || role === "Volunteer") return children;
 
-    return <Navigate to="/" state={{ from: location }} replace='true' />;
+    return <Navigate to="/" state={{ from: location.pathname }} replace='true' />;
 };
 
 export default RoleBasedRoute;

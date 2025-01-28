@@ -4,7 +4,7 @@ import AdminPanelHome from "./AdminPanel/AdminPanelHome";
 import DonorHome from "./Donor/DonorHome";
 
 const RoleBasedDashboard = () => {
-    const [role, isLoading] = useRole();
+    const [role, , isLoading] = useRole();
 
     if (isLoading) {
         return <Loading></Loading>;

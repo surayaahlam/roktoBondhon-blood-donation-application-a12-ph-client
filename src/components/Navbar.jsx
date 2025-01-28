@@ -11,34 +11,34 @@ const Navbar = () => {
     const links = <>
         <NavLink
             to="/"
-            className={({ isActive }) => `text-lg md:text-base ${isActive ? `font-extrabold text-primary` : 'hover:scale-110 hover:font-semibold'}`}>Home</NavLink>
+            className={({ isActive }) => `text-lg md:text-base ${isActive ? `font-extrabold text-primary` : 'hover:scale-105 hover:font-semibold'}`}>Home</NavLink>
         {
             user?.email &&
             <NavLink
                 to="/dashboard"
-                className={({ isActive }) => `text-lg ${isActive ? `font-extrabold text-primary` : 'hover:scale-110 hover:font-semibold'} md:hidden`}>Dashboard</NavLink>
+                className={({ isActive }) => `text-lg ${isActive ? `font-extrabold text-primary` : 'hover:scale-105 hover:font-semibold'} md:hidden`}>Dashboard</NavLink>
         }
         <NavLink
             to="/donation-requests"
-            className={({ isActive }) => `text-lg md:text-base ${isActive ? `font-extrabold text-primary` : 'hover:scale-110 hover:font-semibold'}`}>Donation Requests</NavLink>
+            className={({ isActive }) => `text-lg md:text-base ${isActive ? `font-extrabold text-primary` : 'hover:scale-105 hover:font-semibold'}`}>Donation Requests</NavLink>
         <NavLink
             to="/blog"
-            className={({ isActive }) => `text-lg md:text-base ${isActive ? `font-extrabold text-primary` : 'hover:scale-110 hover:font-semibold'}`}>Blog</NavLink>
+            className={({ isActive }) => `text-lg md:text-base ${isActive ? `font-extrabold text-primary` : 'hover:scale-105 hover:font-semibold'}`}>Blog</NavLink>
         {
             user?.email &&
             <NavLink
                 to="/funding"
-                className={({ isActive }) => `text-lg md:text-base ${isActive ? `font-extrabold text-primary` : 'hover:scale-110 hover:font-semibold'}`}>Funding</NavLink>
+                className={({ isActive }) => `text-lg md:text-base ${isActive ? `font-extrabold text-primary` : 'hover:scale-105 hover:font-semibold'}`}>Funding</NavLink>
         }
         {
             user?.email ?
                 (
-                    <Link onClick={logOut} className={`text-lg md:hidden hover:scale-110 hover:font-semibold`}>Logout</Link>
+                    <Link onClick={logOut} className={`text-lg md:hidden hover:scale-105 hover:font-semibold`}>Logout</Link>
                 ) :
                 (
                     <NavLink
                         to="/login"
-                        className={({ isActive }) => `text-lg md:text-base ${isActive ? `font-extrabold text-primary` : 'hover:scale-110 hover:font-semibold'}`}>Login</NavLink>
+                        className={({ isActive }) => `text-lg md:text-base ${isActive ? `font-extrabold text-primary` : 'hover:scale-105 hover:font-semibold'}`}>Login</NavLink>
                 )
         }
     </>
@@ -83,8 +83,8 @@ const Navbar = () => {
                                                 <p className="text-sm ml-5">{user?.displayName}</p>
                                                 <p className="text-xs ml-5">{user?.email}</p>
                                                 <div className="divider my-[2px]"></div>
-                                                <Link to="/dashboard" className={`text-lg md:text-base hover:scale-100 hover:font-semibold hover:text-primary uppercase hover:bg-[#ffe8e8] mx-2 px-3 py-2 rounded-xl`}>Dashboard</Link>
-                                                <Link onClick={logOut} className={`text-lg md:text-base hover:scale-100 hover:font-semibold hover:text-primary uppercase hover:bg-[#ffe8e8] mx-2 px-3 py-2 rounded-xl`}>Logout</Link>
+                                                <Link to="/dashboard" className={`text-lg md:text-base hover:font-semibold hover:text-primary uppercase hover:bg-[#ffe8e8] mx-2 px-3 py-2 rounded-xl`}>Dashboard</Link>
+                                                <Link onClick={logOut} className={`text-lg md:text-base hover:font-semibold hover:text-primary uppercase hover:bg-[#ffe8e8] mx-2 px-3 py-2 rounded-xl`}>Logout</Link>
                                             </ul>
                                         </div>
                                     }
@@ -98,7 +98,7 @@ const Navbar = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="drawer-side z-50">
+                        <div className="drawer-side z-50 md:hidden">
                             <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                             <ul className="menu bg-base-200 text-base-content min-h-full w-60 py-6 pl-7 gap-6">
                                 {/* Sidebar content here */}

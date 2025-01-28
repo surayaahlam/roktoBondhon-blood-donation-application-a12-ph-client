@@ -158,14 +158,9 @@ const Register = () => {
                                     required
                                     defaultValue="">
                                     <option value="" disabled>Select your blood group</option>
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="AB+">AB+</option>
-                                    <option value="AB-">AB-</option>
-                                    <option value="O+">O+</option>
-                                    <option value="O-">O-</option>
+                                    {['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'].map((group, index) => (
+                                        <option key={index} value={group}>{group}</option>
+                                    ))}
                                 </select>
                             </div>
 

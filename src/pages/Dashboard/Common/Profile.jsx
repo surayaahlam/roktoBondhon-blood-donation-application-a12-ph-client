@@ -8,20 +8,15 @@ import { useState } from "react";
 import useAddressLocation from "../../../hooks/useAddressLocation";
 import { imageUpload } from "../../../api/utils";
 import { toast } from "react-toastify";
+import useRole from "../../../hooks/useRole";
 
 const Profile = () => {
-    const { user, loading, updateUserProfile } = useAuth();
+    const { user, updateUserProfile } = useAuth();
+    const [, userData, isLoading, refetch] = useRole();
     const axiosSecure = useAxiosSecure();
     const [isEditable, setIsEditable] = useState(false);
+    const [loading, setLoading] = useState(false);
     const { districts, upazilas, fetchUpazilas } = useAddressLocation();
-
-    const { data: userData, isLoading, refetch } = useQuery({
-        queryKey: ['user', user?.email],
-        queryFn: async () => {
-            const { data } = await axiosSecure(`/users/${user?.email}`);
-            return data;
-        },
-    });
 
     const handleDistrictChange = (event) => {
         const districtName = event.target.value;
@@ -42,12 +37,13 @@ const Profile = () => {
 
     const handleSave = async (e) => {
         e.preventDefault();
+        setLoading(true);
         const form = e.target;
         const name = form.name.value;
         const avatar = image;
         const bloodGroup = form.blood.value;
-        const district = form.district.value;
-        const upazila = form.upazila.value;
+        const district = form.district.value || userData?.district;
+        const upazila = form.upazila.value || userData?.upazila;
 
         const updatedUser = {
             name,
@@ -62,18 +58,19 @@ const Profile = () => {
             const { data } = await axiosSecure.patch(`/updatedUser/${user?.email}`,
                 updatedUser
             );
+            await refetch();
+            setIsEditable(false);
             toast.success("Profile updated successfully!", {
-                position: "top-center",
+                position: "top-right",
             });
         } catch (err) {
             console.error(err);
             toast.error("Failed to update profile.", {
-                position: "top-center"
+                position: "top-right"
             }
             );
         }
-        await refetch();
-        setIsEditable(false);
+        setLoading(false);
     };
 
 
@@ -106,8 +103,8 @@ const Profile = () => {
                                 type="text"
                                 defaultValue={user?.displayName}
                                 placeholder="Enter your name"
-                                className={`input input-bordered border-primary`} 
-                                readOnly={!isEditable}/>
+                                className={`input input-bordered border-primary`}
+                                readOnly={!isEditable} />
                         </div>
 
                         {/* Email */}
@@ -154,14 +151,9 @@ const Profile = () => {
                                     name="blood"
                                     className="select border-primary"
                                     defaultValue={userData?.bloodGroup}>
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="AB+">AB+</option>
-                                    <option value="AB-">AB-</option>
-                                    <option value="O+">O+</option>
-                                    <option value="O-">O-</option>
+                                    {['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'].map((group, index) => (
+                                        <option key={index} value={group}>{group}</option>
+                                    ))}
                                 </select>
                                 :
                                 <input
@@ -233,7 +225,7 @@ const Profile = () => {
                     {
                         isEditable &&
                         < div className="mt-4 self-end flex gap-2">
-                            <button 
+                            <button
                                 type="submit"
                                 className="btn bg-primary border-none text-white hover:bg-font_quaternary text-base uppercase px-10"
                             >
