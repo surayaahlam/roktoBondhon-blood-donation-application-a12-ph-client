@@ -98,7 +98,7 @@ const Navbar = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="drawer-side z-50 md:hidden">
+                        <div className="drawer-side z-50">
                             <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                             <ul className="menu bg-base-200 text-base-content min-h-full w-60 py-6 pl-7 gap-6">
                                 {/* Sidebar content here */}

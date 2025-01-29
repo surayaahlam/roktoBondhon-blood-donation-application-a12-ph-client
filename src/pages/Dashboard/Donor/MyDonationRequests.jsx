@@ -1,7 +1,7 @@
 
 const MyDonationRequests = () => {
     return (
-        <div>
+        <div className="mb-8 md:mb-6">
             My Donation Requests
             
         </div>

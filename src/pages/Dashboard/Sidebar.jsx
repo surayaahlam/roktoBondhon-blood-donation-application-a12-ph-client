@@ -13,7 +13,7 @@ const Sidebar = () => {
     const [role] = useRole();
 
     return (
-        <div className="w-60 md:w-56 lg:w-72 bg-primary min-h-screen">
+        <div className="w-60 md:w-56 lg:w-72 bg-primary min-h-screen flex-none">
             {/* Logo */}
             <div className="hidden m-2 p-2 lg:py-3 rounded-lg md:flex items-center bg-white gap-2 lg:gap-4">
                 <img className="w-12 h-12" src={logoImg} alt="logo" />

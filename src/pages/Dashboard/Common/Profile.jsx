@@ -86,7 +86,7 @@ const Profile = () => {
                     <div className="flex items-center justify-between">
                         <h2 className="text-2xl md:text-[26px] lg:text-3xl font-bold text-primary">My Profile</h2>
                         {!isEditable &&
-                            <div onClick={handleEdit} className="btn btn-ghost hover:bg-transparent text-primary">
+                            <div title="Edit your profile" onClick={handleEdit} className="btn btn-ghost hover:bg-transparent text-primary">
                                 <TbEdit size={27}></TbEdit>
                             </div>
                         }

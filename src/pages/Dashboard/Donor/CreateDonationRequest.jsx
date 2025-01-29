@@ -4,12 +4,14 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useRole from "../../../hooks/useRole";
 import Loading from "../../Loading";
+import { useState } from "react";
 
 const CreateDonationRequest = () => {
     const axiosSecure = useAxiosSecure();
     const { user, loading } = useAuth();
     const [, userData] = useRole();
     const { districts, upazilas, fetchUpazilas } = useAddressLocation();
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleDistrictChange = (event) => {
         const districtName = event.target.value;
@@ -18,6 +20,7 @@ const CreateDonationRequest = () => {
 
     const handleRequest = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         const form = new FormData(e.target);
         const newDonationRequest = {
             requesterName: user?.displayName,
@@ -36,6 +39,7 @@ const CreateDonationRequest = () => {
         try {
             const { data } = await axiosSecure.post('/donation-requests', newDonationRequest);
             if (data.insertedId) {
+                setIsLoading(false);
                 Swal.fire({
                     title: "Success",
                     text: "Donation request created successfully!",
@@ -215,7 +219,11 @@ const CreateDonationRequest = () => {
                         className="btn bg-primary border-none text-white hover:bg-font_quaternary text-base uppercase px-10 mt-4"
                         disabled={userData?.status === "blocked"}
                     >
-                        Request
+                        {
+                            isLoading
+                                ? <span className="loading loading-spinner loading-xs text-white"></span>
+                                : "Request"
+                        }
                     </button>
                     {
                         userData?.status === "blocked" &&

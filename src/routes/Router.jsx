@@ -20,6 +20,7 @@ import BlogPage from "../pages/BlogPage";
 import SearchPage from "../pages/SearchPage";
 import Funding from "../pages/Funding";
 import DonationRequestDetails from "../pages/DonationRequestDetails";
+import UpdateDonationRequest from "../pages/Dashboard/Donor/UpdateDonationRequest";
 
 const router = createBrowserRouter([
     {
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
                 </PrivateRoute>
             },
             {
-                path: "donation-request-details",
+                path: "donation-request-details/:id",
                 element: <PrivateRoute>
                     <DonationRequestDetails></DonationRequestDetails>
                 </PrivateRoute>
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
             {
                 path: "create-donation-request",
                 element: <CreateDonationRequest></CreateDonationRequest>
+            },
+            {
+                path: "update-donation-request/:id",
+                element: <UpdateDonationRequest></UpdateDonationRequest>
             },
             {
                 path: "all-users",
