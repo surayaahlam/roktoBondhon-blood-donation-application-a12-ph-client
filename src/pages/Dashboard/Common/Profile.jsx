@@ -41,7 +41,7 @@ const Profile = () => {
         const form = e.target;
         const name = form.name.value;
         const avatar = image;
-        const bloodGroup = form.blood.value;
+        const bloodGroup = form.blood.value || userData?.bloodGroup;
         const district = form.district.value || userData?.district;
         const upazila = form.upazila.value || userData?.upazila;
 

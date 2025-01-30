@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useRole from "../../../hooks/useRole";
 import Loading from "../../Loading";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const CreateDonationRequest = () => {
     const axiosSecure = useAxiosSecure();
@@ -63,6 +64,9 @@ const CreateDonationRequest = () => {
     if (loading) return <Loading />
     return (
         <div className="mb-8 md:mb-6">
+            <Helmet>
+                <title>Rokto Bondhon | Create Donation Request</title>
+            </Helmet>
             <div className={`card w-full shrink-0`}>
                 <form onSubmit={handleRequest} className="card-body p-2 md:p-4 lg:px-10">
                     <h2 className="text-2xl md:text-[26px] lg:text-3xl font-bold text-primary mb-2">Create Donation Request</h2>
