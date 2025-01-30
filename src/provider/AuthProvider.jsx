@@ -42,7 +42,6 @@ const AuthProvider = ({ children }) => {
             }
             else {
                 localStorage.removeItem('access-token');
-                // await axiosPublic.post('/logout');
             }
             setLoading(false);
         });

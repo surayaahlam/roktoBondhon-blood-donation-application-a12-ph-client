@@ -2,15 +2,28 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 const useMyDonationRequests = (email) => {
     const axiosSecure = useAxiosSecure();
+    const [statusFilter, setStatusFilter] = useState(""); // Status filter
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5; // Number of requests per page
 
     // Fetch all donation requests
     const { data: donationRequests = [], isLoading, refetch } = useQuery({
         queryKey: ["donation-requests", email],
         queryFn: async () => {
-            const response = await axiosSecure(`/donation-requests/${email}`);
+            const response = await axiosSecure(`/donation-requests/${email}?status=${statusFilter}&page=${currentPage}&limit=${itemsPerPage}`);
+            return response.data;
+        },
+    });
+
+    // Fetch total donation request count for pagination
+    const { data: totalRequests = 0 } = useQuery({
+        queryKey: ["donation-requests-count", email, statusFilter],
+        queryFn: async () => {
+            const response = await axiosSecure(`/donation-requests/count/${email}?status=${statusFilter}`);
             return response.data;
         },
     });
@@ -71,11 +84,16 @@ const useMyDonationRequests = (email) => {
 
     return {
         donationRequests,
+        refetch,
+        totalRequests,
+        statusFilter,
+        setStatusFilter,
+        currentPage,
+        setCurrentPage,
+        itemsPerPage,
         recentDonationRequests,
         isLoading,
         isRecentLoading,
-        refetch,
-        refetchRecent,
         handleStatusUpdate,
         modernDelete
     };
