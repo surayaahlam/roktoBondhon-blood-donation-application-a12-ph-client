@@ -29,7 +29,7 @@ const MyDonationRequests = () => {
         refetch();
     }, [statusFilter, currentPage]);
 
-    const totalPages = Math.ceil((totalRequests?.count || 0) / itemsPerPage); // Prevent NaN
+    const totalPages = Math.ceil((totalRequests?.count || 0) / itemsPerPage);
     const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
     return (
@@ -38,27 +38,27 @@ const MyDonationRequests = () => {
                 <title>Rokto Bondhon | My Donation Requests</title>
             </Helmet>
 
-            <div className="p-2 pr-0 md:p-4 lg:px-8">
-                <div className="flex items-center justify-between mb-5 lg:mb-8">
-                    <h2 className="text-2xl md:text-[26px] lg:text-3xl font-bold text-primary">My Donation Requests</h2>
-                    {/* Filter Dropdown */}
-                    <div className="flex items-center gap-2">
-                        <label className="label">
-                            <span className="label-text lg:text-base font-medium">Filter by Status:</span>
-                        </label>
-                        <select
-                            onChange={(e) => setStatusFilter(e.target.value)}
-                            className="select border-primary"
-                        >
-                            <option value="">All</option>
-                            <option value="pending">Pending</option>
-                            <option value="inprogress">In Progress</option>
-                            <option value="done">Done</option>
-                            <option value="canceled">Canceled</option>
-                        </select>
-                    </div>
+            <div className="flex items-center justify-between mb-5 lg:mb-8 mt-2 md:mt-4 mx-2 md:mx-4 lg:mx-8">
+                <h2 className="text-2xl md:text-[26px] lg:text-3xl font-bold text-primary">My Donation Requests</h2>
+                {/* Filter Dropdown */}
+                <div className="flex items-center gap-2">
+                    <label className="label">
+                        <span className="label-text lg:text-base font-medium">Filter by Status:</span>
+                    </label>
+                    <select
+                        onChange={(e) => setStatusFilter(e.target.value)}
+                        className="select border-primary"
+                    >
+                        <option value="">All</option>
+                        <option value="pending">Pending</option>
+                        <option value="inprogress">In Progress</option>
+                        <option value="done">Done</option>
+                        <option value="canceled">Canceled</option>
+                    </select>
                 </div>
+            </div>
 
+            <div className="p-2 pr-0 md:p-4 lg:px-8 overflow-x-scroll">
                 <table className="table-auto min-w-full border-collapse border border-primary">
                     <thead>
                         <tr className="bg-primary text-white">
@@ -147,7 +147,7 @@ const MyDonationRequests = () => {
                     ))}
                 </div>
             ) : (
-                <p className="text-center text-gray-500">No Pages Available</p>
+                <p className="text-center text-gray-500">You have no donation request</p>
             )}
         </div>
     );

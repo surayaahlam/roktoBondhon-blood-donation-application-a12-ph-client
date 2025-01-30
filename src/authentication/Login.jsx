@@ -9,13 +9,15 @@ import useAuth from "../hooks/useAuth";
 
 const Login = () => {
     const navigate = useNavigate();
-    const { userLogin, setUser, loading } = useAuth();
+    const { userLogin, setUser } = useAuth();
     const [error, setError] = useState({});
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
     const location = useLocation();
 
     const handleLogin = (event) => {
         event.preventDefault();
+        setLoading(true);
         const email = event.target.email.value;
         const password = event.target.password.value;
 
@@ -23,6 +25,7 @@ const Login = () => {
             .then((result) => {
                 const user = result.user;
                 setUser(user);
+                setLoading(false);
                 Swal.fire({
                     title: "Login Successful!",
                     text: `Welcome back, ${user.displayName}!`,
@@ -35,6 +38,7 @@ const Login = () => {
             })
             .catch((err) => {
                 setError({ ...error, login: "Your email or password is incorrect. Please try again." })
+                setLoading(false);
             });
     };
 

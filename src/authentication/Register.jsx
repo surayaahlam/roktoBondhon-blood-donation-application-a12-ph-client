@@ -53,16 +53,19 @@ const Register = () => {
         const passwordErrors = validatePassword(password);
         if (passwordErrors.length > 0) {
             setError({ ...error, password: passwordErrors });
+            setLoading(false);
             return;
         };
 
         if (password !== conPassword) {
             setError({ ...error, password: "Passwords didn't match." });
+            setLoading(false);
             return;
         };
 
         if (!terms) {
             setError({ ...error, terms: "Please accept our terms & conditions." });
+            setLoading(false);
             return;
         };
 
@@ -100,6 +103,7 @@ const Register = () => {
         }
         catch (err) {
             setError({ ...error, errorMsg: err.message });
+            setLoading(false);
         }
     };
 

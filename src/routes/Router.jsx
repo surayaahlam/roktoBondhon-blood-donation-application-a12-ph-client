@@ -10,7 +10,6 @@ import Profile from "../pages/Dashboard/Common/Profile";
 import RoleBasedDashboard from "../pages/Dashboard/RoleBasedDashboard";
 import MyDonationRequests from "../pages/Dashboard/Donor/MyDonationRequests";
 import CreateDonationRequest from "../pages/Dashboard/Donor/CreateDonationRequest";
-import AdminRoute from "./AdminRoute";
 import AllUsers from "../pages/Dashboard/AdminPanel/AllUsers";
 import RoleBasedRoute from "./RoleBasedRoute";
 import AllBloodDonationRequest from "../pages/Dashboard/AdminPanel/AllBloodDonationRequest";
@@ -93,9 +92,9 @@ const router = createBrowserRouter([
             },
             {
                 path: "all-users",
-                element: <AdminRoute>
+                element: <RoleBasedRoute>
                     <AllUsers></AllUsers>
-                </AdminRoute>
+                </RoleBasedRoute>
             },
             {
                 path: "all-blood-donation-request",

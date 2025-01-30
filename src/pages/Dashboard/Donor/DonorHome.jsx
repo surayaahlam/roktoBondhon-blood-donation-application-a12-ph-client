@@ -13,7 +13,7 @@ const DonorHome = () => {
 
     const { recentDonationRequests, isRecentLoading, handleStatusUpdate, modernDelete } = useMyDonationRequests(user?.email)
 
-    
+
     return (
         <div className="mb-8 md:mb-6">
             <Helmet>
@@ -25,7 +25,7 @@ const DonorHome = () => {
             </div>
 
             <h2 className="text-2xl text-font_primary font-semibold mb-2 lg:text-center ml-2 md:ml-4 lg:ml-0">Recent Donation Request</h2>
-            <div className="pl-2 md:pl-4 lg:px-8 overflow-x-scroll">
+            <div className="pl-2 md:pl-4 lg:px-8 overflow-x-scroll flex flex-col items-center">
                 <table className="table-auto min-w-full border-collapse border border-primary">
                     <thead>
                         <tr className="bg-primary text-white">
@@ -94,6 +94,11 @@ const DonorHome = () => {
                         ))}
                     </tbody>
                 </table>
+                {
+                    recentDonationRequests <= 0 &&
+                    <p className="text-center text-gray-500">You have no donation request</p>
+
+                }
                 {
                     isRecentLoading &&
                     <Loading></Loading>
