@@ -4,9 +4,23 @@ import StatCard from "../../../components/Dashboard/StatCard";
 import { GiReceiveMoney } from "react-icons/gi";
 import { MdBloodtype } from "react-icons/md";
 import { RiUserFill } from "react-icons/ri";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Loading from "../../Loading";
 
 const AdminPanelHome = () => {
     const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
+
+    const { data: stats = {}, isLoading } = useQuery({
+        queryKey: ['admin-stats'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/admin-stats');
+            return res.data;
+        }
+    });
+
+    if(isLoading) return <Loading></Loading>
 
     return (
         <div className="mb-8 md:mb-6">
@@ -20,9 +34,9 @@ const AdminPanelHome = () => {
 
             <div className="px-2 md:px-4 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-8">
-                    <StatCard icon={RiUserFill} title="Total User (Donors)" count="5" percentage="+4.2" />
+                    <StatCard icon={RiUserFill} title="Total User (Donors)" count={stats.donors} percentage="+4.2" />
                     <StatCard icon={GiReceiveMoney} title="Total Funding" count="14,732৳" percentage="+4.2" />
-                    <StatCard icon={MdBloodtype} title="Total Blood Donation Request" count="11" percentage="+4.2" />
+                    <StatCard icon={MdBloodtype} title="Total Blood Donation Request" count={stats.donationRequests} percentage="+4.2" />
                 </div>
 
             </div>
