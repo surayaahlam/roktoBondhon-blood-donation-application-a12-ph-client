@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { FiMoreVertical } from "react-icons/fi";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import Loading from "../../Loading";
 
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure();
@@ -26,7 +27,7 @@ const AllUsers = () => {
     // Handle User Actions
     const handleAction = async (id, action) => {
         await axiosSecure.patch(`/users/${id}`, { action });
-        refetch(); // Refresh data
+        refetch();
     };
 
     return (
@@ -128,6 +129,10 @@ const AllUsers = () => {
                         ))}
                     </tbody>
                 </table>
+                {
+                    isLoading &&
+                    <Loading></Loading>
+                }
                 {pages.length > 0 ? (
                     <div className="mt-20 flex justify-center space-x-2">
                         {pages.map((page) => (

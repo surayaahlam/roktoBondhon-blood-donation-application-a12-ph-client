@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../../hooks/useAuth";
-import { FaEye, FaCheckSquare, FaLongArrowAltRight } from "react-icons/fa";
+import { FaEye, FaCheckSquare, FaLongArrowAltRight, FaEdit } from "react-icons/fa";
 import { MdCancel, MdDelete, MdEditSquare } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../Loading";
@@ -49,7 +49,13 @@ const DonorHome = () => {
                                 <td className={`px-4 py-2 text-center`}>{new Date(request.donationDate).toLocaleString('en-Gb').slice(0, 10)}</td>
                                 <td className={`px-4 py-2 text-center`}>{request.donationTime}</td>
                                 <td className={`px-4 py-2 text-center`}>{request.recipientBloodGroup}</td>
-                                <td className={`px-4 py-2 text-center`}>{request.donationStatus}</td>
+                                <td className={`px-4 py-2 text-center 
+                                    ${request.donationStatus === "canceled" && "text-red-500"} 
+                                    ${request.donationStatus === "done" && "text-green-500"} 
+                                    ${request.donationStatus === "inprogress" && "text-[#3f00e7]"} 
+                                    ${request.donationStatus === "pending" && "text-yellow-500"}`}>
+                                    {request.donationStatus}
+                                </td>
                                 <td className={`px-4 py-2 text-center`}>
                                     {request.donationStatus === 'inprogress' &&
                                         `${request.requesterName}, ${request.requesterEmail}`}
@@ -72,10 +78,10 @@ const DonorHome = () => {
                                         </>
                                     )}
                                     <button title="Edit"
-                                        className="btn btn-ghost p-0 px-1 hover:bg-transparent text-[#3f00e7]"
+                                        className="btn btn-ghost p-0 px-1 hover:bg-transparent text-neutral"
                                         onClick={() => navigate(`/dashboard/update-donation-request/${request._id}`)}
                                     >
-                                        <MdEditSquare size={20} />
+                                        <FaEdit size={20} />
                                     </button>
                                     <button title="Delete"
                                         className="btn btn-ghost p-0 px-1 hover:bg-transparent text-warning"

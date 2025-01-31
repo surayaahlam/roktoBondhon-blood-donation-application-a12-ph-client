@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import Loading from "../../Loading";
 import useAuth from "../../../hooks/useAuth";
 import { TbEdit } from "react-icons/tb";
-import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useState } from "react";
 import useAddressLocation from "../../../hooks/useAddressLocation";
