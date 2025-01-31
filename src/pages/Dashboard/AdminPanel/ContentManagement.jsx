@@ -103,7 +103,7 @@ const ContentManagement = () => {
                     </thead>
                     <tbody>
                         {blogs.map((blog) => (
-                            <tr className="border-t border-[#ffe8e8]" key={blog._id}>
+                            <tr className="border border-primary font-nunito font-medium" key={blog._id}>
                                 <td className={`px-4 py-2`}>{blog.title}</td>
                                 <td className={`px-4 py-2 text-center ${blog.status === "draft" ? "text-yellow-500" : "text-green-500"}`}>{blog.status}</td>
                                 <td className={`px-4 py-2 text-center flex items-center justify-center`}>

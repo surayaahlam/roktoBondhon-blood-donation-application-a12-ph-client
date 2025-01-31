@@ -58,7 +58,7 @@ const DonorHome = () => {
                                 </td>
                                 <td className={`px-4 py-2 text-center`}>
                                     {request.donationStatus === 'inprogress' &&
-                                        `${request.requesterName}, ${request.requesterEmail}`}
+                                        `${request.donorName}, ${request.donorEmail}`}
                                 </td>
                                 <td className={`px-4 py-2 text-center flex items-center justify-center`}>
                                     {request.donationStatus === 'inprogress' && (

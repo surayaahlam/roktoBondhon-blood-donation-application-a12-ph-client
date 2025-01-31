@@ -6,7 +6,6 @@ import Loading from "../../Loading";
 import { useQuery } from "@tanstack/react-query";
 import { FaEye, FaCheckSquare, FaEdit } from "react-icons/fa";
 import { MdCancel, MdDelete } from "react-icons/md";
-import { HiClock } from "react-icons/hi2";
 import useRole from "../../../hooks/useRole";
 
 const AllBloodDonationRequest = () => {
@@ -132,7 +131,7 @@ const AllBloodDonationRequest = () => {
                                 </td>
                                 <td className={`px-4 py-2 text-center`}>
                                     {request.donationStatus === 'inprogress' &&
-                                        `${request.requesterName}, ${request.requesterEmail}`}
+                                        `${request.donorName}, ${request.donorEmail}`}
                                 </td>
                                 <td className={`px-4 py-2 text-center flex items-center justify-center`}>
                                     {role === "Admin" ? (
@@ -150,13 +149,6 @@ const AllBloodDonationRequest = () => {
                                                         <MdCancel size={20} />
                                                     </button>
                                                 </>
-                                            )}
-                                            {request.donationStatus !== 'inprogress' && (
-                                                <button title="In Progress"
-                                                    className="btn btn-ghost p-0 px-1 hover:bg-transparent text-[#3f00e7]"
-                                                    onClick={() => handleStatusUpdate(request._id, 'inprogress')}>
-                                                    <HiClock size={20} />
-                                                </button>
                                             )}
                                             <button title="Edit"
                                                 className="btn btn-ghost p-0 px-1 hover:bg-transparent text-neutral"
@@ -189,13 +181,6 @@ const AllBloodDonationRequest = () => {
                                                         <MdCancel size={20} />
                                                     </button>
                                                 </>
-                                            )}
-                                            {request.donationStatus !== 'inprogress' && (
-                                                <button title="In Progress"
-                                                    className="btn btn-ghost p-0 px-1 hover:bg-transparent text-[#3f00e7]"
-                                                    onClick={() => handleStatusUpdate(request._id, 'inprogress')}>
-                                                    <HiClock size={20} />
-                                                </button>
                                             )}
                                             <button title="View"
                                                 className="btn btn-ghost p-0 px-1 hover:bg-transparent text-info"

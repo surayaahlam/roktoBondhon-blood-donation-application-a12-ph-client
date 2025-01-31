@@ -3,6 +3,7 @@ import Heading from "../components/shared/Heading";
 import useAddressLocation from "../hooks/useAddressLocation";
 import useAxios from "../hooks/useAxios";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const SearchPage = () => {
     const axiosPublic = useAxios();
@@ -27,7 +28,7 @@ const SearchPage = () => {
             const res = await axiosPublic(`/search/donors?bloodGroup=${encodedBloodGroup}&district=${encodedDistrict}&upazila=${encodedUpazila}`);
             return res.data;
         },
-        enabled: false, 
+        enabled: false,
     });
 
     const handleSearch = () => {
@@ -36,6 +37,9 @@ const SearchPage = () => {
 
     return (
         <div className="container mx-auto mt-10 mb-28">
+            <Helmet>
+                <title>Rokto Bondhon | Search Page</title>
+            </Helmet>
             <div className="w-10/12 md:w-11/12 lg:w-9/12 mx-auto">
                 <Heading subtitle="Search Page" title="Search For Blood Donors Near You" />
                 <div className="flex flex-col md:flex-row items-center gap-4 w-full">
@@ -96,7 +100,7 @@ const SearchPage = () => {
                             </thead>
                             <tbody>
                                 {donors.map((donor) => (
-                                    <tr key={donor._id}>
+                                    <tr className="border border-primary font-nunito font-medium" key={donor._id}>
                                         <td className="px-4 py-2 flex items-center justify-center">
                                             <img src={donor.avatar} alt="Avatar" className="w-12 h-12 rounded-full" />
                                         </td>
