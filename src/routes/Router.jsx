@@ -20,6 +20,9 @@ import SearchPage from "../pages/SearchPage";
 import Funding from "../pages/Funding";
 import DonationRequestDetails from "../pages/DonationRequestDetails";
 import UpdateDonationRequest from "../pages/Dashboard/Donor/UpdateDonationRequest";
+import AddBlog from "../pages/Dashboard/AdminPanel/AddBlog";
+import BlogDetails from "../pages/BlogDetails";
+import ViewBlog from "../pages/Dashboard/AdminPanel/ViewBlog";
 
 const router = createBrowserRouter([
     {
@@ -41,6 +44,10 @@ const router = createBrowserRouter([
             {
                 path: "blog",
                 element: <BlogPage></BlogPage>
+            },
+            {
+                path: "blog/:id",
+                element: <BlogDetails></BlogDetails>
             },
             {
                 path: "funding",
@@ -106,6 +113,18 @@ const router = createBrowserRouter([
                 path: "content-management",
                 element: <RoleBasedRoute>
                     <ContentManagement></ContentManagement>
+                </RoleBasedRoute>
+            },
+            {
+                path: "content-management/add-blog",
+                element: <RoleBasedRoute>
+                    <AddBlog></AddBlog>
+                </RoleBasedRoute>
+            },
+            {
+                path: "content-management/view-blog/:id",
+                element: <RoleBasedRoute>
+                    <ViewBlog></ViewBlog>
                 </RoleBasedRoute>
             },
         ]

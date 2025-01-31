@@ -58,6 +58,7 @@ const CreateDonationRequest = () => {
                 icon: "error",
             });
             console.error(error);
+            setIsLoading(false);
         }
     };
 

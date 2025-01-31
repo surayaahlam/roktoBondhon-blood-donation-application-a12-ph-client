@@ -45,7 +45,6 @@ const AllBloodDonationRequest = () => {
         try {
             await axiosSecure.delete(`/donation-request/${id}`);
             await refetch();
-            await refetchRecent();
             toast.success("Your donation request deleted successfully!", {
                 position: "top-right",
             });

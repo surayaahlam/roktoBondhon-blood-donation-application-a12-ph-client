@@ -78,6 +78,16 @@ const Register = () => {
             // Update user profile in Firebase
             await updateUserProfile({ displayName: name, photoURL: imageURL });
 
+            // Post user data to the backend
+            await axiosPublic.post(`/users/${user?.email}`, {
+                name: user?.displayName,
+                email: user?.email,
+                avatar: user?.photoURL,
+                bloodGroup,
+                district,
+                upazila,
+            });
+
             setLoading(false);
 
             // Show success message
@@ -89,16 +99,6 @@ const Register = () => {
                 willClose: () => {
                     navigate("/");
                 }
-            });
-
-            // Post user data to the backend
-            await axiosPublic.post(`/users/${user?.email}`, {
-                name: user?.displayName,
-                email: user?.email,
-                avatar: user?.photoURL,
-                bloodGroup,
-                district,
-                upazila,
             });
         }
         catch (err) {
