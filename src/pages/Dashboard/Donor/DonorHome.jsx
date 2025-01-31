@@ -44,7 +44,7 @@ const DonorHome = () => {
                             <tr key={request._id} className="border border-primary font-nunito font-medium">
                                 <td className={`px-4 py-2 text-center`}>{request.recipientName}</td>
                                 <td className={`px-4 py-2 text-center`}>
-                                    {request.recipientDistrict}, {request.recipientUpazila}
+                                    {request.recipientUpazila}, {request.recipientDistrict}
                                 </td>
                                 <td className={`px-4 py-2 text-center`}>{new Date(request.donationDate).toLocaleString('en-Gb').slice(0, 10)}</td>
                                 <td className={`px-4 py-2 text-center`}>{request.donationTime}</td>
