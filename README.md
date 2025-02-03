@@ -1,4 +1,4 @@
-# **Rokto Bondhon**   
+# 💉 **Rokto Bondhon**   
 
 A user-friendly **Blood Donation Application** built with the **MERN stack** (MongoDB, Express.js, React, Node.js). The platform connects **donors** with those in need, ensuring a smooth and efficient blood donation process.
 
@@ -19,7 +19,7 @@ Check out the live version of **Rokto Bondhon**:
 
 ## 🚀 Features  
 
-- ✅ **User Registration & Authentication** – Secure login/signup for donors and recipients.  
+- ✅ **User Registration & Authentication** – Secure login/register for admin, donors and volunteers.  
 - ✅ **Blood Donation Requests** – Users can request blood by specifying their **blood group, district, and upazila**.  
 - ✅ **Donor Management** – Admins and volunteers can manage donor profiles efficiently.  
 - ✅ **Search for Donors** – Users can filter donors by **blood group, district, and upazila**.  

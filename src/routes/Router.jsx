@@ -23,7 +23,7 @@ import UpdateDonationRequest from "../pages/Dashboard/Donor/UpdateDonationReques
 import AddBlog from "../pages/Dashboard/AdminPanel/AddBlog";
 import BlogDetails from "../pages/BlogDetails";
 import ViewBlog from "../pages/Dashboard/AdminPanel/ViewBlog";
-import GiveFund from "../pages/GiveFund";
+import GiveFund from "../pages/GiveFund/GiveFund";
 
 const router = createBrowserRouter([
     {
