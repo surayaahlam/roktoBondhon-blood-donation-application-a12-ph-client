@@ -47,9 +47,9 @@ const Funding = () => {
                     </thead>
                     <tbody>
                         {funds.map((fund) => (
-                            <tr key={fund._id} className="border border-primary font-nunito font-medium">
+                            <tr key={fund._id} className="border border-primary font-nunito font-semibold">
                                 <td className={`px-4 py-2 text-center`}>{fund.name}</td>
-                                <td className={`px-4 py-2 text-center`}>{fund.fundAmount}</td>
+                                <td className={`px-4 py-2 text-center`}>${fund.fundAmount}</td>
                                 <td className={`px-4 py-2 text-center`}>{new Date(fund.fundingDate).toLocaleString('en-Gb').slice(0, 10)}</td>
                             </tr>
                         ))}

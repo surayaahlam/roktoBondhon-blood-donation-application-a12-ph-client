@@ -35,11 +35,16 @@ Check out the live version of **Rokto Bondhon**:
 ## 🛠️ Tech Stack  
 
 - **Frontend:** React, React Router, Tailwind CSS, DaisyUI  
-- **Backend:** Node.js, Express.js 
+- **Backend:** Node.js, Express.js  
 - **Database:** MongoDB  
 - **Authentication:** Firebase Authentication  
 - **State Management:** React Query  
 - **Payments:** Stripe Payment Integration  
 - **Notifications:** SweetAlert2, React Toastify  
+- **Data Visualization:** Recharts  
+- **File Handling:** Dom-to-Image, jsPDF  
+- **Text Editor:** Jodit React  
+- **Animations:** AOS, Lottie React  
+- **Social Sharing:** React Share  
 
 ---

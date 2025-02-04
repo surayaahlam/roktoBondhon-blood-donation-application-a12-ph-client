@@ -86,6 +86,7 @@ const Register = () => {
                 bloodGroup,
                 district,
                 upazila,
+                createdAt: new Date(),
             });
 
             setLoading(false);

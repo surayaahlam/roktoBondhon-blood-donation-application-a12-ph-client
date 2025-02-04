@@ -2,10 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import Heading from "../components/shared/Heading";
 import useAddressLocation from "../hooks/useAddressLocation";
 import useAxios from "../hooks/useAxios";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Helmet } from "react-helmet-async";
+import jsPDF from 'jspdf';
+import domtoimage from 'dom-to-image';
 
 const SearchPage = () => {
+    const printRef = useRef();
     const axiosPublic = useAxios();
     const { districts, upazilas, fetchUpazilas } = useAddressLocation();
     const [bloodGroup, setBloodGroup] = useState("");
@@ -35,8 +38,31 @@ const SearchPage = () => {
         refetch();
     };
 
+    const generatePDF = async () => {
+        const element = printRef.current;
+        const pdf = new jsPDF("p", "mm", "a4");
+    
+        // Expand table before capture
+        element.style.overflow = "visible";
+        element.style.height = "auto";
+    
+        try {
+            const imgData = await domtoimage.toPng(element, { quality: 1 });
+            const imgWidth = 210; // A4 width in mm
+            const imgHeight = (element.clientHeight * imgWidth) / element.clientWidth;
+    
+            pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+            pdf.save("search-results.pdf");
+        } catch (error) {
+            console.error("Error generating PDF:", error);
+        } finally {
+            // Restore original styling
+            element.style.overflow = "auto";
+        }
+    };
+
     return (
-        <div className="container mx-auto mt-10 mb-28">
+        <div ref={printRef} className="container mx-auto mt-10 mb-28">
             <Helmet>
                 <title>Rokto Bondhon | Search Page</title>
             </Helmet>
@@ -114,6 +140,11 @@ const SearchPage = () => {
                         </table>
                     </div>
                 )}
+                {donors.length > 0 &&
+                    <div className="text-right mt-6">
+                        <button onClick={generatePDF} className="btn bg-primary border-none text-white hover:bg-font_quaternary text-base uppercase px-7">Download as PDF</button>
+                    </div>
+                }
                 {!isLoading && donors.length === 0 && <p className="mt-6 lg:mt-10 text-base font-nunito text-center font-medium">No donors found</p>}
             </div>
         </div>

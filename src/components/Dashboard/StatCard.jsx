@@ -11,9 +11,9 @@ const StatCard = ({ icon: Icon, title, count, percentage }) => {
             <div className="flex flex-col items-start gap-1">
                 <h3 className="text-gray-500 text-sm font-medium">{title}</h3>
                 <h2 className="text-2xl font-bold">{count}</h2>
-                <p className="text-gray-500 text-[13px]">
-                    Increase by <span className="text-green-600 font-medium bg-green-100 px-2 py-0.5 rounded-md">{percentage}%</span> this month
-                </p>
+                <span className="bg-green-100 text-green-600 text-xs font-medium px-2 py-1 rounded-md">
+                    Trending 📈
+                </span>
             </div>
         </div>
     );

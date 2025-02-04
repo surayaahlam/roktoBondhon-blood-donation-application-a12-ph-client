@@ -7,6 +7,7 @@ import { RiUserFill } from "react-icons/ri";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Loading from "../../Loading";
+import DonationRequestsChart from "../../../components/Dashboard/DonationRequestChart";
 
 const AdminPanelHome = () => {
     const { user } = useAuth();
@@ -34,9 +35,13 @@ const AdminPanelHome = () => {
 
             <div className="px-2 md:px-4 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-8">
-                    <StatCard icon={RiUserFill} title="Total User (Donors)" count={stats.donors} percentage="+4.2" />
-                    <StatCard icon={GiReceiveMoney} title="Total Funding" count={`$${stats.funding}`} percentage="+4.2" />
-                    <StatCard icon={MdBloodtype} title="Total Blood Donation Request" count={stats.donationRequests} percentage="+4.2" />
+                    <StatCard icon={RiUserFill} title="Total User (Donors)" count={stats.donors} />
+                    <StatCard icon={GiReceiveMoney} title="Total Funding" count={`$${stats.funding}`}  />
+                    <StatCard icon={MdBloodtype} title="Total Blood Donation Request" count={stats.donationRequests}  />
+                </div>
+
+                <div className="mt-5 lg:mt-8">
+                    <DonationRequestsChart></DonationRequestsChart>
                 </div>
 
             </div>
