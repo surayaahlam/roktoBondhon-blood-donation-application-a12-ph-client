@@ -14,12 +14,12 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const location = useLocation();
+    const [formData, setFormData] = useState({ email: "", password: "" });
 
     const handleLogin = (event) => {
         event.preventDefault();
         setLoading(true);
-        const email = event.target.email.value;
-        const password = event.target.password.value;
+        const { email, password } = formData; // Get email & password from state
 
         userLogin(email, password)
             .then((result) => {
@@ -42,6 +42,21 @@ const Login = () => {
             });
     };
 
+    const handleRoleLogin = (role) => {
+        if (role === "admin") {
+            setFormData({
+                email: "surayaahlam@gmail.com",
+                password: "Sa1234"
+            });
+        } else if (role === "volunteer") {
+            setFormData({
+                email: "rahim@gmail.com",
+                password: "Ra1234"
+            });
+        }
+    };
+
+
     return (
         <div className="container mx-auto mt-5 mb-16">
             <Helmet>
@@ -61,7 +76,16 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text  font-medium">Email Address</span>
                                 </label>
-                                <input name="email" type="email" placeholder="Enter your email address" className={`input input-bordered border-primary`} required />
+                                <input
+                                    name="email"
+                                    type="email"
+                                    placeholder="Enter your email address"
+                                    value={formData.email}
+                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })} // Update state
+                                    className="input input-bordered border-primary"
+                                    required
+                                />
+                                {/* <input name="email" type="email" placeholder="Enter your email address" className={`input input-bordered border-primary`} required /> */}
                             </div>
 
                             {/* Password */}
@@ -73,8 +97,17 @@ const Login = () => {
                                     name="password"
                                     type={showPassword ? "text" : "password"}
                                     placeholder="Enter your password"
+                                    value={formData.password} // Controlled input
+                                    onChange={(e) => setFormData({ ...formData, password: e.target.value })} // Update state
+                                    className="input input-bordered border-primary"
+                                    required
+                                />
+                                {/* <input
+                                    name="password"
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="Enter your password"
                                     className={`input input-bordered border-primary`}
-                                    required />
+                                    required /> */}
                                 <button
                                     onClick={(e) => {
                                         e.preventDefault();
@@ -114,6 +147,24 @@ const Login = () => {
                                         Don't Have An Account? <Link to="/register" className="link link-hover text-[15px] text-primary hover:scale-110 font-bold">Register</Link>
                                     </p>
                                 </label>
+                            </div>
+
+                            {/* Admin and Volunteer Login Buttons */}
+                            <div className="flex gap-4 self-center">
+                                <button
+                                    type="button"
+                                    onClick={() => handleRoleLogin("admin")}
+                                    className="btn bg-primary text-white hover:bg-secondary text-sm font-bold"
+                                >
+                                    Admin Login
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => handleRoleLogin("volunteer")}
+                                    className="btn bg-primary text-white hover:bg-secondary text-sm font-bold"
+                                >
+                                    Volunteer Login
+                                </button>
                             </div>
                         </form>
                     </div>
