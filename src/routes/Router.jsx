@@ -24,6 +24,11 @@ import AddBlog from "../pages/Dashboard/AdminPanel/AddBlog";
 import BlogDetails from "../pages/BlogDetails";
 import ViewBlog from "../pages/Dashboard/AdminPanel/ViewBlog";
 import GiveFund from "../pages/GiveFund/GiveFund";
+import AboutUs from "../pages/AboutUs";
+import FAQPage from "../pages/FAQPage";
+import BloodDonationTips from "../pages/BloodDonationTips";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+import TermsOfService from "../pages/TermsOfService";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +42,26 @@ const router = createBrowserRouter([
             {
                 path: "search",
                 element: <SearchPage></SearchPage>
+            },
+            {
+                path: "about-us",
+                element: <AboutUs></AboutUs>
+            },
+            {
+                path: "faq",
+                element: <FAQPage></FAQPage>
+            },
+            {
+                path: "blood-donation-tips",
+                element: <BloodDonationTips></BloodDonationTips>
+            },
+            {
+                path: "privacy-policy",
+                element: <PrivacyPolicy></PrivacyPolicy>
+            },
+            {
+                path: "terms-of-service",
+                element: <TermsOfService></TermsOfService>
             },
             {
                 path: "donation-requests",

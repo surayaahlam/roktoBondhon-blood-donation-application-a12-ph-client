@@ -2,10 +2,25 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaLocationDot, FaPho
 import { IoIosMail } from "react-icons/io";
 import logoImg from "../assets/logo1.png"
 import { BiSolidRightArrow } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Footer = () => {
-    return (
+    const navigate = useNavigate();
 
+    const handleSubscribe = (e) => {
+        e.preventDefault();
+        const email = e.target.email.value; // Get email value
+
+        if (!email) {
+            toast.error("Please enter a valid email address.");
+            return;
+        }
+        toast.success("Thank you for subscribing!");
+        e.target.reset(); // Clears the form
+    };
+
+    return (
         <footer className="bg-footer pt-16 pb-6 md:pb-8">
             <div className="container mx-auto">
                 <div className="w-11/12 lg:w-10/12 mx-auto">
@@ -46,11 +61,11 @@ const Footer = () => {
                             <h2 className="text-font_tertiary font-roboto uppercase text-lg font-bold">Quick Links</h2>
                             <div className="w-16 h-[1.5px] bg-primary my-4"></div>
                             <ul className="mt-2 space-y-2 text-font_quaternary">
-                                <li className="flex items-center gap-2"><BiSolidRightArrow size={10} className="text-primary" /><a href="#" className="link link-hover text-base font-normal">About Us</a></li>
-                                <li className="flex items-center gap-2"><BiSolidRightArrow size={10} className="text-primary" /><a href="#" className="link link-hover text-base font-normal">FAQs</a></li>
-                                <li className="flex items-center gap-2"><BiSolidRightArrow size={10} className="text-primary" /><a href="#" className="link link-hover text-base font-normal">Blood Donation Tips</a></li>
-                                <li className="flex items-center gap-2"><BiSolidRightArrow size={10} className="text-primary" /><a href="#" className="link link-hover text-base font-normal">Privacy Policy</a></li>
-                                <li className="flex items-center gap-2"><BiSolidRightArrow size={10} className="text-primary" /><a href="#" className="link link-hover text-base font-normal">Terms of Service</a></li>
+                                <li className="flex items-center gap-2"><BiSolidRightArrow size={10} className="text-primary" /><button onClick={() => navigate("/about-us")} className="link link-hover text-base font-normal">About Us</button></li>
+                                <li className="flex items-center gap-2"><BiSolidRightArrow size={10} className="text-primary" /><button onClick={() => navigate("/faq")} className="link link-hover text-base font-normal">FAQs</button></li>
+                                <li className="flex items-center gap-2"><BiSolidRightArrow size={10} className="text-primary" /><button onClick={() => navigate("/blood-donation-tips")} className="link link-hover text-base font-normal">Blood Donation Tips</button></li>
+                                <li className="flex items-center gap-2"><BiSolidRightArrow size={10} className="text-primary" /><button onClick={() => navigate("/privacy-policy")} className="link link-hover text-base font-normal">Privacy Policy</button></li>
+                                <li className="flex items-center gap-2"><BiSolidRightArrow size={10} className="text-primary" /><button onClick={() => navigate("/terms-of-service")} className="link link-hover text-base font-normal">Terms of Service</button></li>
                             </ul>
                         </div>
 
@@ -59,18 +74,41 @@ const Footer = () => {
                             <h2 className="text-font_tertiary font-roboto uppercase text-lg font-bold">Stay Connected</h2>
                             <div className="w-16 h-[1.5px] bg-primary my-4"></div>
                             <div className="mt-2 flex space-x-3">
-                                <a className="link link-hover hover:hover:scale-90 p-2 bg-primary rounded text-white" href=""><FaLinkedinIn size={18} /></a>
-                                <a className="link link-hover hover:hover:scale-90 p-2 bg-primary rounded text-white" href=""><FaInstagram size={18} /></a>
-                                <a className="link link-hover hover:hover:scale-90 p-2 bg-primary rounded text-white" href=""><FaFacebookF size={18} /></a>
-                                <a className="link link-hover hover:hover:scale-90 p-2 bg-primary rounded text-white" href=""><FaTwitter size={18} /></a>
+                                <a className="link link-hover hover:scale-90 p-2 bg-primary rounded text-white"
+                                    href="https://www.linkedin.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    <FaLinkedinIn size={18} />
+                                </a>
+                                <a className="link link-hover hover:scale-90 p-2 bg-primary rounded text-white"
+                                    href="https://www.instagram.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    <FaInstagram size={18} />
+                                </a>
+                                <a className="link link-hover hover:scale-90 p-2 bg-primary rounded text-white"
+                                    href="https://www.facebook.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    <FaFacebookF size={18} />
+                                </a>
+                                <a className="link link-hover hover:scale-90 p-2 bg-primary rounded text-white"
+                                    href="https://x.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    <FaTwitter size={18} />
+                                </a>
                             </div>
+
                             <div className="mt-8">
                                 <p className="text-font_tertiary font-roboto uppercase text-base font-bold">Subscribe to our Newsletter</p>
-                                <form className="flex mt-4">
+                                <form onSubmit={handleSubscribe} className="flex mt-4">
                                     <input
                                         type="email"
+                                        name="email"
                                         placeholder="Enter your email"
                                         className="px-3 py-2 text-gray-800 rounded-l-md focus:outline-none"
+                                        required
                                     />
                                     <button
                                         type="submit"
