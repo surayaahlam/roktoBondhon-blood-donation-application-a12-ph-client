@@ -25,10 +25,10 @@ const HowItWorks = () => {
                             <motion.div
                                 key={index}
                                 className="flex items-center gap-4 p-4 border border-primary rounded-2xl shadow transition-all"
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 1, ease: "easeInOut" }}
-                                viewport={{ once: true, amount: 0.3 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.2 }}
+                                viewport={{ once: true }}
                             >
                                 <div className="text-3xl text-primary mb-4">{step.icon}</div>
                                 <div>
