@@ -26,7 +26,7 @@ const testimonials = [
 
 const Testimonials = () => {
     return (
-        <section className="container mx-auto mb-28">
+        <section className="container mx-auto mb-28 lg:py-10">
             <div className="w-10/12 mx-auto">
                 <Heading subtitle="Testimonials" title="Real Stories from Our Donors & Recipients" />
 

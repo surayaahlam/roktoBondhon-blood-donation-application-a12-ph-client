@@ -44,7 +44,7 @@ Check out the live version of **Rokto Bondhon**:
 - **Data Visualization:** Recharts  
 - **File Handling:** Dom-to-Image, jsPDF  
 - **Text Editor:** Jodit React  
-- **Animations:** AOS, Lottie React  
+- **Animations:** AOS, Framer Motion, Lottie React  
 - **Social Sharing:** React Share  
 
 ---
