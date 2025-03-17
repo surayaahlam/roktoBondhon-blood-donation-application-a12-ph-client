@@ -3,6 +3,7 @@ import contactLottie from "../../../assets/lottie/contact.json";
 import Heading from "../../../components/shared/Heading";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { toast } from "react-toastify";
 
 AOS.init({
     duration: 1750, // Animation duration in milliseconds
@@ -10,6 +11,26 @@ AOS.init({
 });
 
 const ContactUs = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Get form values
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const message = e.target.message.value;
+
+        // Validation
+        if (!name || !email || !message) {
+            toast.error("All fields are required.");
+            return;
+        }
+
+        // Simulate form submission (replace with API call if needed)
+        toast.success("Your message has been sent successfully!");
+
+        // Clear the form
+        e.target.reset();
+    };
     return (
         <section className="container mx-auto mb-28">
             <div className="w-10/12 mx-auto">
@@ -31,7 +52,7 @@ const ContactUs = () => {
                         ></Heading>
                         <Lottie className="w-72 md:w-96 lg:hidden" animationData={contactLottie}></Lottie>
 
-                        <form data-aos="fade-left" action="submitForm" method="POST" className="space-y-4 md:space-y-5 w-full">
+                        <form data-aos="fade-left" action="submitForm" method="POST" className="space-y-4 md:space-y-5 w-full" onSubmit={handleSubmit}>
                             {/* Name Field */}
                             <div className="form-group">
                                 <label htmlFor="name" className="text-lg">Name</label>

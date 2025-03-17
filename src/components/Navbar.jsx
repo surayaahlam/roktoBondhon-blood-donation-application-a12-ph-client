@@ -65,14 +65,14 @@ const Navbar = () => {
                                     {
                                         user?.email &&
                                         <div className="dropdown dropdown-end lg:ml-2">
-                                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle border border-primary avatar">
                                                 {
                                                     user?.photoURL ?
                                                         <div>
                                                             <img className={`rounded-full`} src={user?.photoURL} alt="" />
                                                         </div>
                                                         :
-                                                        <div className="text-black">
+                                                        <div className="text-primary">
                                                             <FaUserCircle size={45} />
                                                         </div>
                                                 }
