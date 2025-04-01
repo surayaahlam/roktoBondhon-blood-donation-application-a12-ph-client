@@ -53,8 +53,8 @@ const Navbar = () => {
                             <div className="navbar">
                                 <div className="mx-2 flex-1 px-2">
                                     <div onClick={() => navigate("/")} className="btn btn-ghost flex items-center hover:bg-transparent px-0">
-                                        <img className="w-12 h-12" src={logoImg} alt="logo" />
-                                        <h2 className={`text-[22px] md:text-[28px] leading-none font-nunito font-extrabold text-left uppercase`}><span className="text-primary">Rokto</span><br />Bondhon</h2>
+                                        <img className="w-11 h-11" src={logoImg} alt="logo" />
+                                        <h2 className={`text-[22px] md:text-[26px] leading-none font-nunito font-extrabold text-left uppercase`}><span className="text-primary">Rokto</span><br />Bondhon</h2>
                                     </div>
                                 </div>
                                 <div className="flex-none gap-2">
@@ -65,7 +65,7 @@ const Navbar = () => {
                                     {
                                         user?.email &&
                                         <div className="dropdown dropdown-end lg:ml-2">
-                                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle border border-primary avatar">
+                                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle border-2 border-primary avatar">
                                                 {
                                                     user?.photoURL ?
                                                         <div>
