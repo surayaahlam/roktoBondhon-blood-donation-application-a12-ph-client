@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Heading from "../../../components/shared/Heading";
 
 const ImpactNumbers = () => {
-    const [stats, setStats] = useState({
+    const [stats] = useState({
         totalDonors: 1200,
         successfulDonations: 850,
         livesSaved: 500,
@@ -12,18 +12,24 @@ const ImpactNumbers = () => {
     });
 
     const [inView, setInView] = useState(false);
+    const [hasAnimated, setHasAnimated] = useState(false);
     const sectionRef = useRef(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
-            ([entry]) => setInView(entry.isIntersecting),
+            ([entry]) => {
+                if (entry.isIntersecting && !hasAnimated) {
+                    setInView(true);
+                    setHasAnimated(true);
+                }
+            },
             { threshold: 0.3 } // 30% of the section must be visible
         );
 
         if (sectionRef.current) observer.observe(sectionRef.current);
 
         return () => observer.disconnect();
-    }, []);
+    }, [hasAnimated]);
 
     return (
         <section ref={sectionRef} className="container mx-auto mb-28 lg:py-16">
@@ -41,7 +47,7 @@ const ImpactNumbers = () => {
                             style={{ borderColor: "#E04A46" }} // Red Highlight
                         >
                             <h3 className="text-4xl font-bold text-primary">
-                                <CountUp end={inView ? value : 0} duration={4} />
+                                <CountUp end={hasAnimated ? value : 0} duration={4} />
                             </h3>
                             <p className="text-lg text-gray-600 mt-2 capitalize">
                                 {key.replace(/([A-Z])/g, " $1")}
