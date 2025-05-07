@@ -10,7 +10,7 @@ AOS.init({
 
 const FeaturedSection = () => {
     return (
-        <div className="bg-gray-100 py-[72px] mb-28">
+        <div className="bg-gray-100 py-[92px] mb-28">
             <div className="container mx-auto px-6">
                 <div className="w-11/12 lg:w-10/12 mx-auto">
                     <Heading

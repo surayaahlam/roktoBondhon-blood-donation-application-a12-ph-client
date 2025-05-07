@@ -270,7 +270,7 @@ const Register = () => {
                             <div className="form-control">
                                 <label className="label justify-start cursor-pointer">
                                     <input type="checkbox" name="terms" className="checkbox checkbox-sm" />
-                                    <span className="ml-3 label-text">Agree to Terms & Conditions</span>
+                                    <p className="ml-3 label-text">Agree to our <Link to="/terms-of-service" className="link link-hover text-primary hover:scale-110 font-bold">Terms</Link> and <Link to="/privacy-policy" className="link link-hover text-primary hover:scale-110 font-bold">Privacy Policy</Link></p>
                                 </label>
                             </div>
 

@@ -5,7 +5,7 @@ const Banner = () => {
     const navigate = useNavigate();
     
     return (
-        <div className="mx-auto mb-16">
+        <div className="mx-auto">
             <div
                 className="hero h-[700px] bg-fixed"
                 style={{

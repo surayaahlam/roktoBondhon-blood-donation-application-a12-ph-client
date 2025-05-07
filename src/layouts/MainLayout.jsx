@@ -10,7 +10,7 @@ const MainLayout = () => {
         <div className="font-roboto">
             <ScrollToTop />
             <Navbar></Navbar>
-            <div className={`${user?.email ? "min-h-[calc(100vh-691.5px)]" : "min-h-[calc(100vh-685.9px)]"}`}>
+            <div className={`${user?.email ? "min-h-[calc(100vh-690.7px)]" : "min-h-[calc(100vh-685.9px)]"}`}>
                 <Outlet></Outlet>
             </div>
             <Footer></Footer>
